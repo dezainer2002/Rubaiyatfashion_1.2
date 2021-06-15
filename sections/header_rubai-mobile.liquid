@@ -1,0 +1,136 @@
+<div class="custom-width">
+  <header class="main__header">
+    <div class="main__nav--left">
+      <div class="gr-account">
+        {% if shop.customer_accounts_enabled %}
+          <a href="{{ routes.account_url }}">{{ 'customer.login.title_login' | t }}</a>
+          <a href="{{ routes.account_register_url }}">{{ 'customer.login.join' | t }}</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="main__logo">
+      <div class="header-logo" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="url" content="{{ shop.url }}">
+        {% if section.settings.brand_type == 'image' and section.settings.logo_pc != bank %}
+        <a class="logo-img" href="{{ routes.cart_url | split: 'cart' | first }}" title="Logo">
+          <img itemprop="logo" data-src="{{ section.settings.logo_pc | img_url: 'master' }}"
+               src="{{ section.settings.logo_pc | img_url: 'master' }}"
+               alt="{{ section.settings.logo_pc.alt | default: shop.name }}" itemprop="logo" class="lazyautosizes lazyloaded" data-sizes="auto">
+        </a>
+        {% elsif section.settings.brand_text != '' %}
+        <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}" style="width: {{ section.settings.logo_max_width }}px">
+          {{ section.settings.brand_text }}
+        </a>
+        {% else %}
+        <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">
+          {{ shop.name }}
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="main__nav--right">
+      <div class="hamburger-icon">
+        <a href="javascript:void(0)" class="icon-nav-mobile">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </a>
+      </div>
+      {% assign menu = linklists[section.settings.menu].links %}
+      <div class="mobileNav">
+        <ul>
+          <h2>{{ 'general.default.menu' | t }}<a class="close-menu" href="#"><i class="fa fa-times" aria-hidden="true"></i></a></h2>
+          {% for link in menu%}
+          <li>
+            <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+              {{ link.title }}
+            </a>
+
+            {% if link.links != blank %}
+            <ul>
+              {% for child_link in link.links %}
+              <li>
+                <a href="{{ child_link.url }}" {% if child_link.active %}aria-current="page"{% endif %}>
+                  {{ child_link.title }}
+                </a>
+
+                {% if child_link.links != blank %}
+                <ul>
+                  {% for grandchild_link in child_link.links %}
+                  <li>
+                    <a href="{{ grandchild_link.url }}" {% if grandchild_link.active %}aria-current="page"{% endif %}>
+                      {{ grandchild_link.title }}
+                    </a>
+                  </li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </header>
+</div>
+{% schema %}
+  {
+    "name": "Header Mobile",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Main Navigation"
+      },
+      {
+		"type": "header",
+		"content": "Logo"
+	  },
+	  {
+        "type": "radio",
+        "id": "brand_type",
+        "label": "Use image or text for logo?",
+        "options": [
+          {
+            "value": "text",
+            "label": "Text"
+          },
+          {
+            "value": "image",
+            "label": "Image"
+          }
+        ],
+        "default": "text"
+      },
+      {
+        "type": "textarea",
+        "id": "brand_text",
+        "label": "Logo text"
+      },
+      {
+          "type": "range",
+          "id": "logo_max_width",
+          "label": "Custom logo width",
+          "min": 30,
+          "max": 250,
+          "step": 5,
+          "unit": "px",
+          "default": 50
+      },
+      {
+        "type": "color",
+        "id": "logo_text_color",
+        "label": "Logo Text Color",
+        "default": "#000"
+      },
+	  {
+       "type": "image_picker",
+        "id": "logo_pc",
+        "label": "Logo image"
+      }
+    ]
+  }
+{% endschema %}

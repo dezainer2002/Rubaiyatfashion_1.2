@@ -1,0 +1,111 @@
+{% comment %}
+  This snippet includes a custom widget based on the current 'paginate' context,
+  defined in { % paginate XXXX by 5 % } tags wrapping the content.
+  The example below breaks the pagination down so you can setup your own styles and behavior if you wish.
+
+  Basic Pagination Usage:
+    <div class="pagination">
+      {{ paginate | default_pagination }}
+    </div>
+
+  Replace Text:
+    <div class="pagination">
+      {{ paginate | default_pagination | replace: 'Previous', 'Newer articles' | replace: 'Next', 'Older articles' }}
+    </div>
+
+  More information:
+   - index#pagination
+   - http://docs.shopify.com/themes/liquid-variables/paginate
+{% endcomment %}
+
+{% if settings.collection_infinite_scrolling %}
+  {% if paginate.next %}    
+    <div class="infinite-scrolling">
+      <a class="btn" data-href="{{ paginate.next.url }}" tabindex>
+        {{ 'collections.general.show_more' | t}}
+      </a>
+    </div>
+  {% else %}
+  <div class="infinite-scrolling">
+      <a class="btn disabled" href="">
+        {{ 'collections.general.no_more_product' | t }}
+      </a>
+    </div>
+  {% endif %}
+
+  {% if settings.category_layout == "skin_1" or template.suffix == 'skin-1' or settings.category_layout == "no_sidebar" or template.suffix == 'no_sidebar' %}
+    {% assign current = paginate.current_offset | plus: 1 %}
+    {% if paginate.next %}
+        {% assign pageSize = paginate.current_offset | plus: paginate.page_size %}
+    {% else %}
+        {% assign pageSize = paginate.items %}
+    {% endif %}
+    <div class="page-total">
+        <p><span>{{ 'collections.toolbar.show' | t }} </span><span>{{ current }} - </span><span class="pageSize">{{ pageSize }}</span><span> {{ 'collections.toolbar.of' | t }} </span><span>{{ paginate.items }}</span></p>
+        {% assign progressbar_width = pageSize | times: 100 | divided_by: paginate.items %}
+    </div>
+  {% endif %}
+
+{% else %}
+<div class="toolbar-bottom">
+  <p class="page-total">
+    <span>{{ 'collections.toolbar.showing' | t }}</span>: 
+    {{ paginate.current_offset | plus: 1 }} -
+    {% if paginate.next %}
+      {{ paginate.current_offset | plus: paginate.page_size }}
+    {% else %}
+      {{ paginate.items }}
+    {% endif %}
+    <span>{{ 'collections.toolbar.of' | t }}</span>
+    {{ paginate.items }}
+  </p>
+
+  <ul class="pagination-page">
+    {% if paginate.previous %}
+    <li class="text">
+      <a href="{{ paginate.previous.url }}" title="{{ 'collections.toolbar.previous' | t }}" {% if settings.enable_multilang %}data-translate="collections.toolbar.previous" translate-item="title"{% endif %}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 10 18" fill="currentColor">
+          <path d="M1.67186 9.00418L9.49386 1.18217C9.76427 0.91171 9.76427 0.473236 9.49386 0.20278C9.22336 -0.0675935 8.78493 -0.0675935 8.51448 0.20278L0.20278 8.51449C-0.0675934 8.78494 -0.0675934 9.22342 0.20278 9.49387L8.51448 17.8056C8.78964 18.0713 9.22811 18.0637 9.49386 17.7885C9.75307 17.5201 9.75307 17.0946 9.49386 16.8262L1.67186 9.00418Z" fill="currentColor"/>
+        </svg>
+      </a>
+    </li>
+    {% else %}
+    <li class="disabled">
+      <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 10 18" fill="currentColor">
+        <path d="M1.67186 9.00418L9.49386 1.18217C9.76427 0.91171 9.76427 0.473236 9.49386 0.20278C9.22336 -0.0675935 8.78493 -0.0675935 8.51448 0.20278L0.20278 8.51449C-0.0675934 8.78494 -0.0675934 9.22342 0.20278 9.49387L8.51448 17.8056C8.78964 18.0713 9.22811 18.0637 9.49386 17.7885C9.75307 17.5201 9.75307 17.0946 9.49386 16.8262L1.67186 9.00418Z" fill="currentColor"/>
+      </svg>
+    </li>
+    {% endif %}
+
+    {% for part in paginate.parts %}
+      {% if part.is_link %}
+      <li>
+        <a href="{{ part.url }}">{{ part.title }}</a>
+      </li>
+      {% else %}
+        {% if part.title == paginate.current_page %}
+        <li class="active"><span>{{ part.title }}</span></li>
+        {% else %}
+        <li><span>{{ part.title }}</span></li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% if paginate.next %}
+    <li class="text">
+      <a href="{{ paginate.next.url }}" title="{{ 'collections.toolbar.next' | t }}" {% if settings.enable_multilang %}data-translate="collections.toolbar.next" translate-item="title"{% endif %}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="currentColor">
+          <path d="M5.24694 4.75306L1.0911 0.597212C0.953516 0.464338 0.734279 0.468153 0.601405 0.605735C0.471779 0.739947 0.471779 0.952711 0.601405 1.0869L4.5124 4.9979L0.601405 8.9089C0.466198 9.04413 0.466198 9.26337 0.601405 9.39859C0.736653 9.5338 0.95587 9.5338 1.0911 9.39859L5.24694 5.24275C5.38215 5.1075 5.38215 4.88828 5.24694 4.75306Z" fill="currentColor"/>
+        </svg>
+      </a>
+    </li>
+    {% else %}
+    <li class="disabled">
+      <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="currentColor">
+        <path d="M5.24694 4.75306L1.0911 0.597212C0.953516 0.464338 0.734279 0.468153 0.601405 0.605735C0.471779 0.739947 0.471779 0.952711 0.601405 1.0869L4.5124 4.9979L0.601405 8.9089C0.466198 9.04413 0.466198 9.26337 0.601405 9.39859C0.736653 9.5338 0.95587 9.5338 1.0911 9.39859L5.24694 5.24275C5.38215 5.1075 5.38215 4.88828 5.24694 4.75306Z" fill="currentColor"/>
+      </svg>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+{% endif %}

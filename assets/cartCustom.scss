@@ -1,0 +1,40 @@
+.cartPage_widthAdjustment {
+  width: 40%;
+
+  @media ( max-width: 1350px ) {
+    width: 45%;
+  }
+
+  @media ( max-width: 1200px ) {
+    width: 55%;
+  }
+}
+a.btn.btn--small-wide.additional-checkout-buttons,
+.pointsAndCheckoutBtn {
+  width: 50% !important;
+  font-family: var(--fonts_name),Arial,sans-serif !important;
+  line-height: var(--font_size_plus8);
+  letter-spacing: normal;
+  padding: 16px 15px 10px 15px !important;
+  display: inline-block !important;
+  margin-bottom: 0 !important;
+  font-weight: 500 !important;
+}
+
+.mobileFlexBox {
+  @media ( max-width: 600px ) {
+    display: block !important;
+
+    .checkoutBtnIs {
+      margin-bottom: 10px !important;
+      width: 100% !important;
+    }
+
+    .pointsAndCheckoutBtn {
+      width: 100% !important;
+    }
+  }
+}
+.checkoutBtnIs {
+  min-height: 50px;
+}

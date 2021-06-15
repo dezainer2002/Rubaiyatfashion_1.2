@@ -1,0 +1,386 @@
+{% if section.settings.collection_results_per_page != blank %}
+  {% assign product_per_page = section.settings.collection_results_per_page %}
+{% else %}
+  {% assign product_per_page = 16 %}
+{% endif %}
+
+{% paginate collection.products by product_per_page %}
+
+{% case section.settings.collection_results_per_row %}
+{% when '1' %}
+    {%- assign grid_item_width = 'col-12' -%}
+  {%- assign rows = 'products-list' -%}
+
+  {% when '2' %}
+    {%- assign grid_item_width = 'col-6' -%}
+  {%- assign rows = 'products-grid' -%}
+
+  {% when '3' %}
+    {%- assign grid_item_width = 'col-6 col-md-4' -%}
+  {%- assign rows = 'products-grid' -%}
+
+  {% when '4' %}
+    {%- assign grid_item_width = 'col-6 col-md-4 col-lg-3' -%}
+  {%- assign rows = 'products-grid' -%}
+
+  {% when '5' %}
+    {%- assign grid_item_width = 'col-6 col-md-4 col-lg-3 col5' -%}
+  {%- assign rows = 'products-grid' -%}
+{% endcase %}
+
+  {% render 'collection-header' %}
+  <div class="boost-pfs-filter-tree boost-pfs-filter-tree-h" data-is-desktop >{% render 'boost-pfs-filter-skeleton', type: 'filter-tree-h'  %}</div>
+  <div class="mobile-container">
+    <div class="boost-pfs-filter-tree-mobile-button" >{% render 'boost-pfs-filter-skeleton', type: 'button' %}</div>
+    {% if section.settings.sort_enable %}
+      <div class="h-desktop boost-pfs-filter-toolbar-item text-right boost-pfs-filter-custom-sorting toolbar-col boost-pfs-filter-top-sorting">{% render 'boost-pfs-filter-skeleton', width: 2 %}</div>
+    {% endif %}
+  </div>
+  <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v" data-is-mobile><div class="close">x</div>{% render 'boost-pfs-filter-skeleton', type: 'filter-tree'  %}</div>
+
+  {% comment %} Toolbar {% endcomment %}
+  <div class="toolbar">
+    <div class="column-left">
+      {% if section.settings.view_as_enable %}
+      <div class="filters-toolbar__view-as toolbar-col" data-view-as>
+        <label data-translate="collections.toolbar.view_as">
+          {{ 'collections.toolbar.view_as' | t}}
+        </label>
+
+        <div class="view-mode">
+          <span class="icon-mode icon-mode-list{% if section.settings.collection_results_per_row == '1' %} active{% endif %}" data-col="1"></span>
+          <span class="icon-mode icon-mode-grid grid-2{% if section.settings.collection_results_per_row == '2' %} active{% endif %}" data-col="2"></span>
+          <span class="icon-mode icon-mode-grid grid-3{% if section.settings.collection_results_per_row == '3' %} active{% endif %}" data-col="3"></span>
+          <span class="icon-mode icon-mode-grid grid-4{% if section.settings.collection_results_per_row == '4' %} active{% endif %}" data-col="4"></span>
+          <span class="icon-mode icon-mode-grid grid-5{% if section.settings.collection_results_per_row == '5' %} active{% endif %}" data-col="5"></span>
+        </div>
+      </div>
+      {% endif %}
+      <div class="result ">{{ 'collections.sidebar.result' | t }}: <span class="count-products">{{ collection.products_count }}</span></div>
+    </div>
+
+    {% if section.settings.sort_enable or section.settings.limited_view %}
+    <div class="column-right">
+      <div class="result h-desktop">{{ 'collections.sidebar.result' | t }}: <span class="count-products">{{ collection.products_count }}</span></div>
+
+      {% if section.settings.limited_view %}
+
+      <div class="filters-toolbar__limited-view toolbar-col" data-limited-view>
+        <label data-translate="collections.toolbar.item_per_page">
+          {{ 'collections.toolbar.item_per_page' | t}}
+        </label>
+
+        <div class="limited-view">
+          <div class="label-tab" data-toggle="dropdown" aria-expanded="false">
+              <span name="paginateBy" class="label-text">
+              {% if cart.attributes.pagination != blank and cart.attributes.pagination %}
+                  {{ cart.attributes.pagination }}
+              {% else %}
+                  {{ section.settings.collection_results_per_page }}
+              {% endif %}
+              </span>
+
+              <span class="icon-dropdown">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="6" height="4" viewBox="0 0 6 4" fill="none">
+                  <path d="M5.71057 0.333252H0.289413C0.0328762 0.333252 -0.0978124 0.643032 0.0861198 0.826965L2.7967 3.53754C2.90803 3.64887 3.09196 3.64887 3.20333 3.53754L5.91391 0.826965C6.0978 0.643032 5.96711 0.333252 5.71057 0.333252Z" fill="#181818"></path>
+                  </svg>
+              </span>
+          </div>
+
+          <ul class="dropdown-menu">
+            <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '12'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '12' %}class="active"{% endif %}{% endif %}>
+              <span data-value="12">
+                12
+              </span>
+            </li>
+            <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '16'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '16' %}class="active"{% endif %}{% endif %}>
+              <span data-value="16">
+                16
+              </span>
+            </li>
+            <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '20'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '20' %}class="active"{% endif %}{% endif %}>
+              <span data-value="20">
+                20
+              </span>
+            </li>
+            <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '24'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '24' %}class="active"{% endif %}{% endif %}>
+              <span data-value="24">
+                24
+              </span>
+            </li>
+            <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '30'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '30' %}class="active"{% endif %}{% endif %}>
+              <span data-value="30">
+                30
+              </span>
+            </li>
+            <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '50'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '50' %}class="active"{% endif %}{% endif %}>
+              <span data-value="50">
+                50
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if section.settings.sort_enable %}
+        <div class="boost-pfs-filter-toolbar-item text-right boost-pfs-filter-custom-sorting toolbar-col boost-pfs-filter-top-sorting">{% render 'boost-pfs-filter-skeleton', width: 2 %}</div>
+      {% endif %}
+
+      <div class="padding">
+        <div class="toolbar-bottom">
+          <p class="page-total boost-pfs-filter-total-products">
+            <span {% if settings.enable_multilang %}data-translate="collections.toolbar.showing"{% endif %}>{{ 'collections.toolbar.showing' | t }}</span>:
+            {{ paginate.current_offset | plus: 1 }} -
+            {% if paginate.next %}
+              {{ paginate.current_offset | plus: paginate.page_size }}
+            {% else %}
+              {{ paginate.items }}
+            {% endif %}
+            <span {% if settings.enable_multilang %}data-translate="collections.toolbar.of"{% endif %}>{{ 'collections.toolbar.of' | t }}</span>
+            {{ paginate.items }}
+          </p>
+
+          <ul class="boost-pfs-filter-pagination-page boost-pfs-filter-bottom-pagination">
+            {% if paginate.previous %}
+              <li class="text">
+                <a href="{{ paginate.previous.url }}" title="{{ 'collections.toolbar.previous' | t }}" {% if settings.enable_multilang %}data-translate="collections.toolbar.previous" translate-item="title"{% endif %}>
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  <span {% if settings.enable_multilang %}data-translate="collections.toolbar.previous"{% endif %}>
+              {{ 'collections.toolbar.previous' | t }}
+            </span>
+                </a>
+              </li>
+            {% else %}
+              <li class="disabled">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <span {% if settings.enable_multilang %}data-translate="collections.toolbar.previous"{% endif %}>
+            {{ 'collections.toolbar.previous' | t }}
+          </span>
+              </li>
+            {% endif %}
+
+            {% for part in paginate.parts %}
+              {% if part.is_link %}
+                <li>
+                  <a href="{{ part.url }}">{{ part.title }}</a>
+                </li>
+              {% else %}
+                {% if part.title == paginate.current_page %}
+                  <li class="active"><span>{{ part.title }}</span></li>
+                {% else %}
+                  <li><span>{{ part.title }}</span></li>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+
+            {% if paginate.next %}
+              <li class="text">
+                <a href="{{ paginate.next.url }}" title="{{ 'collections.toolbar.next' | t }}" {% if settings.enable_multilang %}data-translate="collections.toolbar.next" translate-item="title"{% endif %}>
+            <span {% if settings.enable_multilang %}data-translate="collections.toolbar.next"{% endif %}>
+            {{ 'collections.toolbar.next' | t }}
+            </span>
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+              </li>
+            {% else %}
+              <li class="disabled">
+          <span {% if settings.enable_multilang %}data-translate="collections.toolbar.next"{% endif %}>
+            {{ 'collections.toolbar.next' | t }}
+          </span>
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </li>
+            {% endif %}
+          </ul>
+          <div class="boost-pfs-filter-load-more"></div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% comment %} End Toolbar {% endcomment %}
+
+
+  <div class="boost-pfs-filter-products product-collection {{ rows }} collectionPageFilter">
+    {% for product in collection.products %}
+      <div class="{% if settings.product_image_border%}grid-item-border {% endif %}{% if settings.product_image_crop%}crop_image {% else %}no_crop_image {% endif %} grid-item col-xs-6 {{ grid_item_width }}">
+        {% include 'product-grid-item', grid_image_width: image_size %}
+      </div>
+    {% endfor %}
+  </div>
+
+
+{% endpaginate %}
+
+
+ <script>
+  // Declare boostPFSThemeConfig variable
+
+  var boostPFSThemeConfig = {
+    label: {
+      sorting: {% assign temp = 'collections.sorting.title' | t  %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Sorting" {% endunless %},
+      sorting_best_selling: {% assign temp = 'collections.sorting.best_selling' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Best Selling" {% endunless %},
+      sorting_manual: {% assign temp = 'collections.sorting.featured' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Featured" {% endunless %},
+      sorting_title_ascending: {% assign temp = 'collections.sorting.az' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Alphabetically, A-Z" {% endunless %},
+      sorting_title_descending: {% assign temp = 'collections.sorting.za' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Alphabetically, Z-A" {% endunless %},
+      sorting_price_ascending: {% assign temp = 'collections.sorting.price_ascending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Lowest Price" {% endunless %},
+      sorting_price_descending: {% assign temp = 'collections.sorting.price_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Highest Price" {% endunless %},
+      sorting_created_ascending: {% assign temp = 'collections.sorting.date_ascending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Date, Old to New" {% endunless %},
+      sorting_created_descending: {% assign temp = 'collections.sorting.date_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Date, New to Old" {% endunless %},
+      sorting_sale_descending: {% assign temp = 'collections.sorting.sale_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "% Off" {% endunless %},
+      sorting_relevance: {% assign temp = 'collections.sorting.relevance' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Relevance" {% endunless %},
+
+
+      sale: {{ 'products.product.sale' | t | json }},
+      sold_out: {{ 'products.product.sold_out' | t | json }},
+      unavailable: {{ 'products.product.unavailable' | t | json }},
+      from_price: {{ 'products.product.from' | t | json }},
+      select_options: {{ 'products.product.select_options' | t | json }},
+      add_to_cart: {{ 'products.product.add_to_cart' | t | json }},
+      quick_view: {{ 'products.product.quick_view' | t | json }},
+      add_to_wishlist: {{ 'wishlist.general.add_to_wishlist' | t | json }},
+      added_to_wishlist: {{ 'wishlist.general.added_to_wishlist' | t | json }},
+      wishlist_note: {{ 'wishlist.general.note' | t | json }},
+      view_as: {{ 'collections.toolbar.view_as' | t | json }},
+      grid_view: {{ 'collections.general.grid_view' | t | json }},
+      list_view: {{ 'collections.general.list_view' | t | json }},
+      toolbar_next: {{ 'collections.toolbar.next' | t | json }},
+      toolbar_previous: {{ 'collections.toolbar.previous' | t | json }},
+      toolbar_showing: {{ 'collections.toolbar.showing' | t | json }},
+      toolbar_of: {{ 'collections.toolbar.of' | t | json }}
+    },
+    custom: {
+      products_per_page: {% if product_per_page %} {{ product_per_page | json }} {% else %} 16 {% endif %},
+      products_per_row: {% if section.settings.collection_results_per_row %} {{ section.settings.collection_results_per_row }} {% else %} 4 {% endif %},
+      grid_item_width: {% if grid_item_width %} {{ grid_item_width | json}} {% else %} "col-md-3" {% endif %},
+      image_size: {% if image_size %} {{ image_size | json }} {% else %} "250x" {% endif %},
+      product_image_border: {% if settings.product_image_border %} {{ settings.product_image_border | json }} {% else %} false  {% endif %},
+      product_image_crop: {% if settings.product_image_crop %} {{ settings.product_image_crop | json }} {% else %} false {% endif %},
+      display_product_reviews: {% if settings.display_product_reviews %} {{ settings.display_product_reviews | json }} {% else %} false {% endif %},
+      display_item_swatch: {% if settings.display_item_swatch %} {{ settings.display_item_swatch | json }} {% else %} false {% endif %},
+      time_lazy_load: {% if settings.time_lazy_load %} {{ settings.time_lazy_load }} {% else %} 100 {% endif %},
+      show_vendor: {% if settings.show_vendor %} {{ settings.show_vendor | json }} {% else %} false {% endif %},
+      enable_quick_view: {% if settings.enable_quick_view %} {{ settings.enable_quick_view | json }} {% else %} false {% endif %},
+      enable_size_swatch: {% if settings.display_item_size %} {{ settings.display_item_size | json }} {% else %} false {% endif %},
+      enable_wishlist: {% if settings.enable_wishlist %} {{ settings.enable_wishlist | json }} {% else %} false {% endif %},
+      display_button: {% if settings.display_button %} {{ settings.display_button | json }} {% else %} false {% endif %},
+    },
+    customer: {
+      tags: {% if customer.tags%} {{ customer.tags | json }} {% else %} [] {% endif %},
+      email: {% if customer.email %} {{ customer.email  | json }} {% else %} '' {% endif %},
+    }
+  };
+</script>
+{% schema %}
+
+  {
+    "name": "Collection Default",
+	"class": "col-12",
+    "settings": [
+	  {
+		"type": "header",
+		"content": "Collection Header"
+	  },
+	  {
+        "type": "checkbox",
+        "id": "display_collection_image",
+        "label": "Show collection image?",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "collection_image",
+        "label": "Image Category",
+	    "info": "This image will show up when you don't add image in Collections Description"
+      },
+	  {
+        "type": "checkbox",
+        "id": "display_collection_des",
+        "label": "Display Collections Description?",
+        "default": true
+      },
+	  {
+		"type": "header",
+		"content": "Collection Content"
+	  },
+	  {
+        "type": "checkbox",
+        "id": "limited_view",
+        "label": "Enable Limited View",
+        "default": true
+      },
+	  {
+        "type": "checkbox",
+        "id": "view_as_enable",
+        "label": "Enable View As",
+        "default": true
+      },
+	  {
+        "type": "checkbox",
+        "id": "sort_enable",
+        "label": "Enable sorting",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "collection_results_per_row",
+        "label": "Products per row (grid only)",
+        "default": "4",
+        "options": [
+		  {
+            "value": "1",
+            "label": "List"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      },
+	  {
+        "type": "select",
+        "id": "collection_results_per_page",
+        "label": "Products per page",
+        "default": "24",
+        "options": [
+		  {
+            "value": "12",
+            "label": "12"
+          },
+          {
+            "value": "16",
+            "label": "16"
+          },
+          {
+            "value": "20",
+            "label": "20"
+          },
+          {
+            "value": "24",
+            "label": "24"
+          },
+          {
+            "value": "30",
+            "label": "30"
+          },
+	      {
+            "value": "50",
+            "label": "50"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

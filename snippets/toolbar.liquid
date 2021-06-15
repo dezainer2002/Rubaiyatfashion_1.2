@@ -1,0 +1,218 @@
+<div class="toolbar {% if section.settings.view_as_enable or section.settings.limited_view %}different-toolbar{% endif %} {% if section.settings.view_as_enable or section.settings.sort_enable or section.settings.limited_view %}has-padding{% endif %}">
+  <div class="column-left">
+    <div class="result h-mobile">{{ 'collections.sidebar.result' | t }}: <span>{{ collection.products_count }}</span></div>
+    <div class="sidebar-label">
+      <span class="icon-filter">
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M2.96874 7.59999H17.0313C17.29 7.59999 17.5 7.3909 17.5 7.13332C17.5 6.87571 17.29 6.66666 17.0313 6.66666H2.96874C2.70998 6.66666 2.5 6.87574 2.5 7.13332C2.5 7.3909 2.71002 7.59999 2.96874 7.59999Z" fill="#181818"/>
+          <path d="M15.1563 9.94791H4.84374C4.58498 9.94791 4.375 10.1579 4.375 10.4166C4.375 10.6754 4.58502 10.8854 4.84374 10.8854H15.1563C15.415 10.8854 15.625 10.6754 15.625 10.4166C15.625 10.1579 15.415 9.94791 15.1563 9.94791Z" fill="#181818"/>
+          <path d="M12.6563 13.0729L7.34377 13.0729C7.08501 13.0729 6.87503 13.2829 6.87503 13.5416C6.87503 13.8004 7.08505 14.0104 7.34377 14.0104L12.6563 14.0104C12.9151 14.0104 13.125 13.8003 13.125 13.5416C13.1251 13.2829 12.9151 13.0729 12.6563 13.0729Z" fill="#181818"/>
+          </svg>
+      </span>
+      <span class="sidebar_more" {% if settings.enable_multilang %}data-translate="collections.sidebar.sidebar_more"{% endif %}>
+        {{ 'collections.sidebar.sidebar_more' | t }}
+      </span>
+    </div>
+    {% if section.settings.view_as_enable %}
+    <div class="filters-toolbar__view-as toolbar-col" data-view-as>
+      <label data-translate="collections.toolbar.view_as">
+        {{ 'collections.toolbar.view_as' | t}}
+      </label>
+
+      <div class="view-mode">
+        <span class="icon-mode icon-mode-list{% if section.settings.collection_results_per_row == '1' %} active{% endif %}" data-col="1"></span>
+        <span class="icon-mode icon-mode-grid grid-2{% if section.settings.collection_results_per_row == '2' %} active{% endif %}" data-col="2"></span>
+        <span class="icon-mode icon-mode-grid grid-3{% if section.settings.collection_results_per_row == '3' %} active{% endif %}" data-col="3"></span>
+        <span class="icon-mode icon-mode-grid grid-4{% if section.settings.collection_results_per_row == '4' %} active{% endif %}" data-col="4"></span>
+        <span class="icon-mode icon-mode-grid grid-5{% if section.settings.collection_results_per_row == '5' %} active{% endif %}" data-col="5"></span>
+      </div> 
+    </div>
+    {% endif %}
+  </div>
+
+  {% if section.settings.sort_enable or section.settings.limited_view %}
+  <div class="column-right">
+    <div class="result h-desktop">{{ 'collections.sidebar.result' | t }}: <span>{{ collection.products_count }}</span></div>
+    {% if section.settings.limited_view %}
+    
+    <div class="filters-toolbar__limited-view toolbar-col " data-limited-view>
+      <label data-translate="collections.toolbar.item_per_page">
+        {{ 'collections.toolbar.item_per_page' | t}}:
+      </label>
+
+      <div class="limited-view">
+        <div class="label-tab" data-toggle="dropdown" aria-expanded="false">
+            <span name="paginateBy" class="label-text">
+            {% if cart.attributes.pagination != blank and cart.attributes.pagination %}
+                {{ cart.attributes.pagination }}
+            {% else %}
+                {{ section.settings.collection_results_per_page }}
+            {% endif %}
+            </span>
+
+            <span class="icon-dropdown">
+              <svg xmlns="http://www.w3.org/2000/svg" width="6" height="4" viewBox="0 0 6 4" fill="currentColor">
+              <path d="M5.71057 0.333252H0.289413C0.0328762 0.333252 -0.0978124 0.643032 0.0861198 0.826965L2.7967 3.53754C2.90803 3.64887 3.09196 3.64887 3.20333 3.53754L5.91391 0.826965C6.0978 0.643032 5.96711 0.333252 5.71057 0.333252Z"
+                    fill="currentColor"/>
+              </svg>
+            </span>
+        </div>
+
+        <ul class="dropdown-menu">
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '12'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '12' %}class="active"{% endif %}{% endif %}>
+            <span data-value="12"> 
+              12
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '16'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '16' %}class="active"{% endif %}{% endif %}>
+            <span data-value="16">
+              16
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '20'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '20' %}class="active"{% endif %}{% endif %}>
+            <span data-value="20">
+              20
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '24'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '24' %}class="active"{% endif %}{% endif %}>
+            <span data-value="24">
+              24
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '30'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '30' %}class="active"{% endif %}{% endif %}>
+            <span data-value="30">
+              30
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '50'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '50' %}class="active"{% endif %}{% endif %}>
+            <span data-value="50">
+              50
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if section.settings.sort_enable %}
+    <div class="filters-toolbar__sortby toolbar-col" data-sortby>
+      {% if settings.layout_style == 'layout_style_fullwidth' and settings.category_layout == 'no_sidebar' %}
+      <span class="icon">
+        <svg viewBox="0 0 301.219 301.219" x="0px" y="0px" class="icon icon-sort" id="icon-sort">
+            <g>
+            <path d="M159.365,23.736v-10c0-5.523-4.477-10-10-10H10c-5.523,0-10,4.477-10,10v10c0,5.523,4.477,10,10,10h139.365             C154.888,33.736,159.365,29.259,159.365,23.736z"></path>
+            <path d="M130.586,66.736H10c-5.523,0-10,4.477-10,10v10c0,5.523,4.477,10,10,10h120.586c5.523,0,10-4.477,10-10v-10             C140.586,71.213,136.109,66.736,130.586,66.736z"></path>
+            <path d="M111.805,129.736H10c-5.523,0-10,4.477-10,10v10c0,5.523,4.477,10,10,10h101.805c5.523,0,10-4.477,10-10v-10             C121.805,134.213,117.328,129.736,111.805,129.736z"></path>
+            <path d="M93.025,199.736H10c-5.523,0-10,4.477-10,10v10c0,5.523,4.477,10,10,10h83.025c5.522,0,10-4.477,10-10v-10             C103.025,204.213,98.548,199.736,93.025,199.736z"></path>
+            <path d="M74.244,262.736H10c-5.523,0-10,4.477-10,10v10c0,5.523,4.477,10,10,10h64.244c5.522,0,10-4.477,10-10v-10             C84.244,267.213,79.767,262.736,74.244,262.736z"></path>
+            <path d="M298.29,216.877l-7.071-7.071c-1.875-1.875-4.419-2.929-7.071-2.929c-2.652,0-5.196,1.054-7.072,2.929l-34.393,34.393             V18.736c0-5.523-4.477-10-10-10h-10c-5.523,0-10,4.477-10,10v225.462l-34.393-34.393c-1.876-1.875-4.419-2.929-7.071-2.929             c-2.652,0-5.196,1.054-7.071,2.929l-7.072,7.071c-3.904,3.905-3.904,10.237,0,14.142l63.536,63.536             c1.953,1.953,4.512,2.929,7.071,2.929c2.559,0,5.119-0.976,7.071-2.929l63.536-63.536             C302.195,227.113,302.195,220.781,298.29,216.877z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+        </svg>
+      </span>
+      {% endif %}
+      {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+      <label for="sort-by" {% if settings.enable_multilang %}data-translate="collections.sorting.title"{% endif %}>
+        {{ 'collections.sorting.title' | t }}:
+      </label>
+      <svg class="h-desktop icon-filter" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M14.2399 17.1099C14.2399 17.3256 14.4144 17.5 14.63 17.5C14.8457 17.5 15.0201 17.3256 15.0201 17.1099V3.82876L17.3541 6.1628C17.4302 6.23891 17.5285 6.27696 17.63 6.27696C17.7315 6.27696 17.8298 6.23891 17.9059 6.1628C18.0581 6.01058 18.0581 5.76639 17.9059 5.61417L14.9091 2.61734C14.7632 2.47147 14.5063 2.47147 14.3605 2.61734L11.3636 5.61417C11.2114 5.76639 11.2114 6.01058 11.3636 6.1628C11.5158 6.31502 11.76 6.31502 11.9123 6.1628L14.2463 3.82876V17.1099H14.2399Z" fill="currentColor"/>
+        <path d="M9.15644 13.8372C9.00422 13.685 8.76004 13.685 8.60782 13.8372L6.27378 16.1712V2.89006C6.27378 2.67442 6.09936 2.5 5.88372 2.5C5.66807 2.5 5.49366 2.67442 5.49366 2.89006V16.1712L3.16279 13.8372C3.01057 13.685 2.76638 13.685 2.61416 13.8372C2.46195 13.9894 2.46195 14.2336 2.61416 14.3858L5.61099 17.3826C5.6871 17.4588 5.78541 17.4968 5.88689 17.4968C5.98837 17.4968 6.08668 17.4588 6.16279 17.3826L9.15961 14.3858C9.30549 14.2368 9.30549 13.9894 9.15644 13.8372Z" fill="currentColor"/>
+      </svg>
+      <div class="filter-sortby"> 
+        <div class="label-tab" data-toggle="dropdown" aria-expanded="false">
+          
+          {% if sort_by == 'manual' %}
+          <span class="label-text" {% if settings.enable_multilang %}data-translate="collections.sorting.featured"{% endif %}>
+            {{ 'collections.sorting.featured' | t }}:
+          </span>
+          {% elsif sort_by == 'price-ascending' %}
+          <span class="label-text" {% if settings.enable_multilang %}data-translate="collections.sorting.price_ascending"{% endif %}>
+            {{ 'collections.sorting.price_ascending' | t }}
+          </span>
+          {% elsif sort_by == 'price-descending' %}
+          <span class="label-text" {% if settings.enable_multilang %}data-translate="collections.sorting.price_descending"{% endif %}>
+            {{ 'collections.sorting.price_descending' | t }}
+          </span>
+          {% elsif sort_by == 'title-ascending' %}
+          <span class="label-text" {% if settings.enable_multilang %}data-translate="collections.sorting.az"{% endif %}>
+            {{ 'collections.sorting.price_ascending' | t }}
+          </span>
+          {% elsif sort_by == 'title-descending' %}
+          <span class="label-text" {% if settings.enable_multilang %}data-translate="collections.sorting.za"{% endif %}>
+            {{ 'collections.sorting.za' | t }}
+          </span>
+          {% elsif sort_by == 'created-ascending' %}
+          <span class="label-text" {% if settings.enable_multilang %}data-translate="collections.sorting.date_ascending"{% endif %}>
+            {{ 'collections.sorting.date_ascending' | t }}
+          </span>
+          {% elsif sort_by == 'created-descending' %}
+          <span class="label-text" {% if settings.enable_multilang %}data-translate="collections.sorting.date_descending"{% endif %}>
+            {{ 'collections.sorting.date_descending' | t }}
+          </span>
+          {% elsif sort_by == 'best-selling' %}
+          <span class="label-text" {% if settings.enable_multilang %}data-translate="collections.sorting.best_selling"{% endif %}>
+            {{ 'collections.sorting.best_selling' | t }}
+          </span>
+          {% endif %}
+          <span class="icon-dropdown h-mobile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="4" viewBox="0 0 6 4" fill="currentColor">
+            <path d="M5.71057 0.333252H0.289413C0.0328762 0.333252 -0.0978124 0.643032 0.0861198 0.826965L2.7967 3.53754C2.90803 3.64887 3.09196 3.64887 3.20333 3.53754L5.91391 0.826965C6.0978 0.643032 5.96711 0.333252 5.71057 0.333252Z"
+                  fill="currentColor"/>
+            </svg>
+          </span>
+        </div>
+
+        <ul class="dropdown-menu">
+          
+          <li {% if sort_by == 'manual' %}class="active"{% endif %}>
+            <span data-href="manual" {% if settings.enable_multilang %}data-translate="collections.sorting.featured"{% endif %}>
+              {{ 'collections.sorting.featured' | t }}
+            </span>
+          </li>
+          <li {% if sort_by == 'price-ascending' %}class="active"{% endif %}>
+            <span data-href="price-ascending" {% if settings.enable_multilang %}data-translate="collections.sorting.price_ascending"{% endif %}>
+              {{ 'collections.sorting.price_ascending' | t }}
+            </span>
+          </li>
+          <li {% if sort_by == 'price-descending' %}class="active"{% endif %}>
+            <span data-href="price-descending" {% if settings.enable_multilang %}data-translate="collections.sorting.price_descending"{% endif %}>
+              {{ 'collections.sorting.price_descending' | t }}
+            </span>
+          </li>
+          <li {% if sort_by == 'title-ascending' %}class="active"{% endif %}>
+            <span data-href="title-ascending" {% if settings.enable_multilang %}data-translate="collections.sorting.az"{% endif %}>
+              {{ 'collections.sorting.az' | t }}
+            </span>
+          </li>
+          <li {% if sort_by == 'title-descending' %}class="active"{% endif %}>
+            <span data-href="title-descending" {% if settings.enable_multilang %}data-translate="collections.sorting.za"{% endif %}>
+              {{ 'collections.sorting.za' | t }}
+            </span>
+          </li>
+          <li {% if sort_by == 'created-ascending' %}class="active"{% endif %}>
+            <span data-href="created-ascending" {% if settings.enable_multilang %}data-translate="collections.sorting.date_ascending"{% endif %}>
+              {{ 'collections.sorting.date_ascending' | t }}
+            </span>
+          </li>
+          <li {% if sort_by == 'created-descending' %}class="active"{% endif %}>
+            <span data-href="created-descending" {% if settings.enable_multilang %}data-translate="collections.sorting.date_descending"{% endif %}>
+              {{ 'collections.sorting.date_descending' | t }}
+            </span>
+          </li>
+          <li {% if sort_by == 'best-selling' %}class="active"{% endif %}>
+            <span data-href="best-selling" {% if settings.enable_multilang %}data-translate="collections.sorting.best_selling"{% endif %}>
+              {{ 'collections.sorting.best_selling' | t }}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if paginate.pages > 1 %}
+      <div class="padding">
+        {% render 'pagination-page' paginate: paginate %}
+      </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>

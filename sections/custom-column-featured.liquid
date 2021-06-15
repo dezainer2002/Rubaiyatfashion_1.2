@@ -1,0 +1,78 @@
+{% case section.blocks.size %}
+{% when 1 %}
+{%- assign grid_item_width = 'col-xs-12 col-sm-12 col-md-12 col-lg-12' -%}
+{% when 2 %}
+{%- assign grid_item_width = 'col-xs-12 col-sm-6 col-md-6 col-lg-6' -%}
+{% when 3 %}
+{%- assign grid_item_width = 'col-xs-12 col-sm-4 col-md-4 col-lg-4' -%}
+{% when 4 %}
+{%- assign grid_item_width = 'col-xs-12 col-sm-3 col-md-3 col-lg-3' -%}
+{% endcase %}
+<div class="custom-width">
+  <div class="main__featuredColumn">
+    <div class="main__featuredColumn--content row">
+      {% for block in section.blocks %}
+      <div class="content__item {{ grid_item_width }}">
+        <div class="main--item" {% if block.settings.image != blank %}style="background-image: url({{ block.settings.image | img_url : "1920x" }});"{% endif %}>
+          {% if block.settings.title != blank %}
+          <h2 class="content__item--title">
+            {{ block.settings.title }}
+          </h2>
+          {% endif %}
+          {% if block.settings.text != blank %}
+          <div class="content__item--text">
+            {{ block.settings.text }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- <script>
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    
+  }else{
+    
+  }
+</script> -->
+
+{% schema %}
+  {
+    "name": "Custom Featured Column",
+    "settings": [
+    ],
+    "blocks" : [
+      {
+        "type": "text",
+        "name": "Item",
+        "settings":[
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label" : "Image"
+          },
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Heading",
+            "default" : "JOIN NOW"
+          },
+          {
+            "type" : "richtext",
+            "id" : "text",
+            "label" : "Sub Heading"
+          }
+		]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

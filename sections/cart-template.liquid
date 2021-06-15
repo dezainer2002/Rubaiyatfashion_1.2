@@ -1,0 +1,407 @@
+{% render 'breadcrumb' %}
+
+{% if cart.item_count > 0 %}
+  <form class="cart-form font-500 wrapper-cart-template grid" action="{{ routes.cart_url }}" method="post" novalidate>
+    <div class=" w-full mt-50 mb:mt-30">
+
+      <div class="h-mobile cart-header-m text-sm text-gray-500 text-center uppercase d-grid leading-none">
+        <div class="items-center d-flex h-mobile">
+        </div>
+        <div class="items-center d-flex h-mobile">
+        </div>
+        <div class="items-center d-flex">
+          {{ 'cart.label.product_name' | t }}
+        </div>
+        <div class="items-center d-flex">
+          {{ 'cart.label.details' | t }}
+        </div>
+        <div class="items-center pt-0 d-flex h-mobile">
+          {{ 'cart.label.quantity' | t }}
+        </div>
+        <div class="items-center d-flex h-mobile">
+          {{ 'cart.label.price' | t }}
+        </div>
+        <div class="items-center d-flex h-mobile">
+          {{ 'cart.label.value' | t }}
+        </div>
+      </div>
+
+      <ul class="cart-list cart-list-m my-25 mb:mb-0 mb:my-0 text-gray-900 border-top mb:border-none">
+        {% for item in cart.items %}
+          <li class="cart-product-item cart-product-item-m border-bottom py-25 mb:mb-20 mb-0 mb:py-0 mb:border-none" data-product_id="{{item.product_id}}" data-item-id="{{item.id}}">
+            <div class="details">
+              <div class="cart--remove h-mobile">
+                <a class="remove left-0 w-16 hover-bg-none" href="{{ routes.cart_url }}/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}">
+                  {% render 'icon-close' %}
+                </a>
+              </div>
+
+              <div class="cart-thumb cart--title px-0 mb:m-0">
+                <a class="product-img" href="{{ item.url }}">
+                  <img src="{{ item | img_url: '160x' }}"  alt="{{ item.title | escape }}" />
+                </a>
+              </div>
+
+              <div class="cart--info">
+                {% if settings.show_vendor %}
+                  <div class="product-vendor mb-0 text-sm font-400 text-gray-400 leading-none mb-5">
+                    {{ item.vendor }}
+                  </div>
+                {% endif %}
+
+                <a href="{{ item.url }}" class="product-name mb-0 text-base uppercase font-600 leading-none">
+                  {% render 'multilang' with item.product.title %}
+                </a>
+
+                <div class="properties">
+                  {% for p in item.properties %}
+                    {% unless p.last == blank %}
+                      <label>{{ p.first }}:&nbsp;</label>
+                      {% if p.last contains '/uploads/' %}
+                        <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                      {% else %}
+                        {{ p.last }}
+                      {% endif %}
+                      <br>
+                    {% endunless %}
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="size text-base font-400 text-gray-900 mt-10">
+                {% if item.product.variants.size != 0 %}
+                  <label class="h-desktop text-base font-400">{{ 'compare.general.size' | t }}:</label>
+
+                  {% unless item.variant.title contains 'Default' %}
+                    {{ item.variant.title }}
+                  {% endunless %}
+                {% endif %}
+              </div>
+
+              <div class="cart--quantity h-mobile">
+                <div class="qty-group ml-0">
+                  <a href="#" data-minus-quantity class="minus button"></a>
+                  <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" {% if item.variant.inventory_management != null and item.variant.inventory_quantity > 0 %}data-line="{{ item.variant.inventory_quantity }}"{% endif %} min="1" class="update-cart--template">
+                  <a href="#" data-plus-quantity class="plus button"></a>
+                </div>
+              </div>
+
+              <div class="cart--price h-desktop">
+                <div class="price-box h-mobile">
+              <span>
+                {{ item.price | money }}
+              </span>
+                </div>
+
+                <div class="cart--quantity mb:mt-0 mb:mb-10 pt-0">
+                  <div class="qty-group mt-0 ml-0 border-gray">
+                    <a href="#" data-minus-quantity class="minus button"></a>
+                    <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" {% if item.variant.inventory_management != null and item.variant.inventory_quantity > 0 %}data-line="{{ item.variant.inventory_quantity }}"{% endif %} min="1" class="update-cart--template border-none">
+                    <a href="#" data-plus-quantity class="plus button"></a>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="cart--price h-mobile">
+                <div class="price-box pt-0 text-base font-400">
+              <span>
+                {{ item.price | money }}
+              </span>
+                </div>
+              </div>
+
+              <div class="cart--total h-mobile ">
+            <span class="price text-base font-500" data-price="{{item.price}}">
+              {{ item.price | times: item.quantity | money }}
+            </span>
+
+              </div>
+
+              <div class=" h-desktop">
+                <a class="remove hover-bg-none h-desktop d-flex items-center space-x-1" href="{{ routes.cart_url }}/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}">
+                <span style="width: 12px; height: 13px">
+                  {% render 'icon-close' %}
+                </span>
+                  <span class="text-base font-400 text-gray-900">{{ 'general.edit_cart.remove' | t}} </span>
+                </a>
+              </div>
+
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if section.settings.img_trust != blank %}
+        <div class="secure-shopping-guarantee">
+          <div class="secure-text">
+            {% render 'multilang' with section.settings.secure_text %}
+          </div>
+          <img src="{{ section.settings.img_trust | img_url: '800x'  }}">
+        </div>
+      {% endif %}
+    </div>
+
+    {% comment %} info {% endcomment %}
+    <div class="h-mobile">
+      <div class="grouped-bottom pt-0 border-none mt-0">
+
+        <div class="discount-container bg-gray-300 font-500 text-sm mb-50 py-50 px-60 d-flex justify-content-between ">
+          {% include 'plus_cart_discount_code' with settings.plus_display_discount_code %}
+          <div class="pr-20">
+            <div class="total border-bottom mb-20 pb-20 d-flex space-x-8 justify-content-between">
+            <span class="label">
+              <span class="text-gray-500 uppercase">
+                {{ 'cart.label.value_pro' | t }}
+              </span>
+            </span>
+              <span class="price text-base font-500 text-gray-900">
+              {{ cart.total_price | money }}
+            </span>
+            </div>
+            <div class="total d-flex space-x-8 items-top mb-0 pb-0">
+            <span class="label">
+              <div class="text-base font-600 text-gray-900">
+                {{ 'cart.label.total_paid' | t }}
+              </div>
+              <div class="text-10 text-gray-500 text-left">
+                {{ 'cart.label.time_return' | t }}
+              </div>
+            </span>
+              <span class="price text-base font-600 text-gray-900">
+              {{ cart.total_price | money }}
+            </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-actions d-flex justify-content-between ml-auto cartPage_widthAdjustment">
+          <a class="btn btn-continue w-fit mb-0 text-sm font-500 px-25 py-15 family-base hide"
+            {% if settings.redirect_button == 'go_back' %}
+              href="javascript:void(0)" onclick="window.history.back();"
+            {% elsif settings.redirect_button == 'link_to' %}
+              href="{% if shop.locale == 'ar' %}/ar{% endif %}{{ settings.link_to_redirect }}"
+            {% else %}
+              href="javascript:void(0)" id="reload_page"
+            {% endif %}
+          >
+            {{ 'cart.ajax_cart.return_to_shop' | t }}
+          </a>
+
+          <input
+            class="btn btn-checkout w-fit mb-0 text-base font-500 px-25 py-15 family-base mr-10 w-50"
+            type="submit"
+            id="custom_checkout_button"
+            onclick="return custom_checkout_handle(event)"
+            name="checkout"
+            value="{{ 'cart.general.button_checkout_guest' | t }}"
+          >
+
+          {% if additional_checkout_buttons %}
+            <div class="w-50">
+              {{ content_for_additional_checkout_buttons }}
+            </div>
+          {% endif %}
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer  %}
+              <a href="/pages/gifts-rewards" class=" btn btn--small-wide additional-checkout-buttons">{{ 'cart.general.button_points_and_checkout' | t }}</a>
+            {% else %}
+              <a href="/account/login?return_url=%2Fpages%2Fgifts-rewards" class=" btn btn--small-wide additional-checkout-buttons">{{ 'cart.general.button_points_and_checkout' | t }}</a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="h-desktop">
+      <div class="grouped-bottom pt-0 border-none mt-20">
+
+        <div class="bg-gray-300 font-500 text-base mb-50 py-20 pr-20 pl-15">
+          {% include 'plus_cart_discount_code' with settings.plus_display_discount_code %}
+          <div class="">
+            <div class="border-bottom mb-15 pb-15 d-flex justify-content-between">
+            <span class="label">
+              <span class="text-base text-gray-500 uppercase font-500">
+                {{ 'cart.label.value_pro' | t }}
+              </span>
+            </span>
+              <span class="price text-base font-500 text-gray-900">
+              {{ cart.total_price | money }}
+            </span>
+            </div>
+            <div class="total d-flex justify-content-between items-top mb-0 pb-0">
+            <span class="label">
+              <div class="text-base font-600 text-gray-900">
+                {{ 'cart.label.total_paid' | t }}
+              </div>
+              <div class="text-10 font-500 text-gray-500">
+                {{ 'cart.label.time_return' | t }}
+              </div>
+            </span>
+              <span class="price text-base font-600 text-gray-900">
+              {{ cart.total_price | money }}
+            </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-actions d-flex justify-content-between mobileFlexBox">
+          {%- comment -%}
+            <a class="btn btn-continue mb-0 text-base font-500 h-40 d-flex items-center justify-content-center" {% if settings.redirect_button == 'go_back' %}href="javascript:void(0)" onclick="window.history.back();"{% elsif settings.redirect_button == 'link_to' %} href="{{ settings.link_to_redirect }}"{% else %}href="javascript:void(0)" id="reload_page"{% endif %}>
+              {{ 'cart.ajax_cart.to_shopping' | t }}
+            </a>
+          {%- endcomment -%}
+          <input class="btn btn-checkout mb-0 text-base font-500 h-40 d-flex items-center justify-content-center w-50 mr-10 checkoutBtnIs" type="submit" id="custom_checkout_button" onclick="return  custom_checkout_handle(event)"  name="checkout" value="{{ 'cart.general.button_checkout_guest' | t }}">
+          {% if additional_checkout_buttons %}
+            <div>{{ content_for_additional_checkout_buttons }}</div>
+          {% endif %}
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer  %}
+              <a href="/pages/gifts-rewards" class="btn btn-checkout w-fit mb-0 text-base font-500 px-25 py-15 family-base pointsAndCheckoutBtn">
+                {{ 'cart.general.button_points_and_checkout' | t }}
+              </a>
+            {% else %}
+              <a href="/account/login?return_url=%2Fpages%2Fgifts-rewards" class="btn btn-checkout w-fit mb-0 text-base font-500 px-25 py-15 family-base pointsAndCheckoutBtn">
+                {{ 'cart.general.button_points_and_checkout' | t }}
+              </a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <input type="hidden" id="invoice_language" name="attributes[lang]" value="{{ routes.cart_url | split: 'cart' | first | remove: '/'}}">
+  </form>
+{% endif %}
+
+{% if cart.item_count < 1 %}
+<div class="no-item-cart" >
+  <p class="alert alert-warning">
+    {{ 'cart.general.empty' | t }}
+  </p>
+  <p class="cart-empty">
+    {{ 'cart.general.continue_browsing_html' | t }}
+  </p>
+</div>
+{% endif %}
+
+<!-- Start of Spotii Product Widget -->
+<style>
+  .spotii-popup svg {
+    width: auto;
+    height: auto;
+    fill: transparent;
+  }
+  .spotii-logo svg {
+    width: auto;
+    
+  }
+</style>
+<script>
+  setTimeout( () => {
+             window.spotiiConfig = {
+             targetXPath: ['.total.d-flex.space-x-8.items-top.mb-0.pb-0 .price.text-base.font-600.text-gray-900'],
+             renderToPath: ['.pr-20'],
+             currency: {{ cart.currency.iso_code | json }},
+             };
+             (function(w,d,s) {
+    var f=d.getElementsByTagName(s)[0];var a=d.createElement('script');a.async=true;a.src=a.src = window.location.href.split("/").includes("ar")?'https://widget.spotii.me/v1/javascript/price-widget-ar':'https://widget.spotii.me/v1/javascript/price-widget';f.parentNode.insertBefore(a,f);
+  }(window, document, 'script'));
+  }, 2000);
+</script>
+
+<script>
+              var user_click_submit = true;
+            var div_click_submit = false;
+            var overrided_submit_button =  document.getElementById("custom_checkout_button");
+              console.log(localStorage.getItem("shopi"));
+              function custom_checkout_handle(ev){
+              if(user_click_submit){
+                  ev.preventDefault();
+
+               $.post( "https://shopify.comosense.com/shopify/calculate-discount",
+               {shopify_json:localStorage.getItem("shopi")}, function(data){
+               //data = JSON.parse(data);
+                 console.log(data);
+                 user_click_submit = false;
+                 overrided_submit_button.click();
+               }, "json").fail( function(jqXHR, textStatus, errorThrown) {
+                alert(textStatus);
+                });
+
+              }
+              }
+
+
+</script>
+
+
+{% schema %}
+  {
+    "name": "Cart Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes",
+        "label": "Allow customers to add notes to their order?",
+        "default": true,
+        "info": "Only enabled in the ajax cart if you use your cart.liquid markup. See docs below."
+      },
+      {
+        "type": "header",
+        "content": "Secure Shopping Guarantee"
+      },
+      {
+        "type": "textarea",
+        "id": "secure_text",
+        "label": "Secure Shopping Guarantee Text",
+        "default": "Secure Shopping Guarantee."
+      },
+ 		{
+        "type": "text",
+        "id": "discount_text",
+        "label": "Discount Code Title",
+        "default": "USE A DISCOUNT CODE"
+      },
+	  {
+        "type": "text",
+        "id": "type_code",
+        "label": "Enter the code",
+        "default": "ENTER THE CODE"
+      },
+ 		{
+        "type": "text",
+        "id": "placeholder_code",
+        "label": "Placeholder code",
+        "default": "Please enter your discount code"
+      },
+      {
+        "type": "image_picker",
+        "id": "img_trust",
+        "label": "Image Trust"
+      },
+      {
+        "type": "header",
+        "content": "Cart CountDown"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_countdown_enable",
+        "label": "Enable Count Down",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "time_countdown",
+        "label": "Time Count Down",
+        "default": 30,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "unit": "min"
+      }
+    ]
+  }
+{% endschema %}

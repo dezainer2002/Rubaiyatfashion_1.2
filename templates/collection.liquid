@@ -1,0 +1,7 @@
+{%-liquid
+  assign jsFile      =   'collection.js' | asset_url
+-%}
+
+{% include 'collection-default' %}
+
+<script src="{{ jsFile }}"></script>

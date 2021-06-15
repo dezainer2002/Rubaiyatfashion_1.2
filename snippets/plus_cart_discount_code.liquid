@@ -1,0 +1,52 @@
+
+{% comment %} {% if plus_cart_discount_code %} {% endif %} {% endcomment %}
+
+<div class="discount-field dcfield h-mobile">
+  <label for="discount" class="leading-none mb-15 text-sm font-500 text-gray-500">
+    {% if section.settings.discount_text != blank %}{{ section.settings.discount_text}}{% endif %}</label>
+  <div class="d-flex space-x-3">
+    <input class="bg-white text-gray-400 h-40 d-flex items-center text-sm font-500 focus:border-main" style="width: 270px" autocomplete="off" type="text" name="discount" placeholder="{{ section.settings.placeholder_code }}" />
+    <p class="border-main h-40 d-flex items-center justify-center text-center text-gray-900 text-sm font-500 cursor-pointer hover:bg-gray-900 hover:text-white transition" onClick="inputDiscount()" style="width: 210px;">
+      {{ section.settings.type_code }}</p>
+  </div>
+
+</div> 
+
+<div class="discount-field dcfield h-desktop mb-20">
+  <label for="discount" onClick="showDiscount()" class="cursor-pointer leading-none mb-0 text-sm font-500 text-gray-500">{% if section.settings.type_code != blank %}{{ section.settings.type_code}}{% endif %}</label>
+
+  <div id="showdiscount" class="showdiscount transition" style="display: none">
+    <input class="bg-white mt-10 text-gray-400 h-40 d-flex items-center text-sm font-500 focus:border-main" style="" autocomplete="off" type="text" name="discount" placeholder="{% if section.settings.placeholder_code != blank %}{{ section.settings.placeholder_code}}{% endif %}" />
+  </div>
+
+</div> 
+
+<script>
+  function inputDiscount(){
+    document.querySelector('[name="discount"]').focus()
+  }
+  function showDiscount(){
+    $('.showdiscount').toggleClass("d-block")
+  }
+
+  $('input[name="discount"]').change(()=>{
+    let discountCode = $('input[name="discount"]').val();
+
+    (discountCode) ? localStorage.setItem('storedDiscount', discountCode) : null  
+  })
+
+  $('form[action="/cart"]').on('submit', function(e){
+    e.preventDefault();
+
+    const domain = window.location.hostname;
+    const discountStored = localStorage.getItem('storedDiscount');
+    const link = "/checkout?discount="+discountStored;
+    if(discountStored){
+      $(location).attr('href', link)
+    }else {
+      $(location).attr('href', '/checkout')
+    }
+
+  }); 
+</script>
+

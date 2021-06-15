@@ -1,0 +1,28 @@
+window.addEventListener('load', function() {
+  adjustHeightsOfItems();
+});
+
+function adjustHeightsOfItems() {
+  let imgMaxHeight        =   0;
+  let gridItemMaxHeight   =   0;
+
+  $( '.collectionPageFilter .grid-item' ).each(function() {
+    const getGridItemMaxHeight  =   $(this).height();
+    const getImgHeight          =   $(this).find( '.inner-top .product-image .product-grid-image img' ).height();
+
+    if ( getGridItemMaxHeight > gridItemMaxHeight ) {
+      gridItemMaxHeight = getGridItemMaxHeight;
+    }
+
+    if ( getImgHeight > imgMaxHeight ) {
+      imgMaxHeight = getImgHeight;
+    }
+
+  });
+
+  $( '.collectionPageFilter .grid-item' ).height( gridItemMaxHeight );
+  $( '.collectionPageFilter .grid-item .inner-top .product-image .product-grid-image img' ).height( imgMaxHeight );
+  // console.log ( 'maxHeight', imgMaxHeight );
+}
+
+

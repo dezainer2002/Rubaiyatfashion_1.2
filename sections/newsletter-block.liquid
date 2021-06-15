@@ -1,0 +1,469 @@
+{% if section.settings.display_block_newsletter %}
+{% if section.blocks.size > 0 %}
+<div class="home2-custom-block footer-top-newsletter mb-120 mb:mb-70" id="custom-block-{{section.id}}">
+    <div class="container mb:px-15">
+    {% for block in section.blocks %}
+  
+        <div class="custom-block-banner banner-large-img lazyload pt-40 pb-30 mb:py-40" data-bgset="{{ block.settings.image_new | img_url: '2048x' }}">
+        
+            {% if block.settings.banner_title != blank or block.settings.banner_heading != blank  or block.settings.banner_button != blank %}
+            <div class="banner-content m-0">
+
+                {% if block.settings.banner_title != blank %}
+                <h4 class="banner-title mb-5 mb:text-xl"
+                    style="{% if block.settings.font_size_banner_title != blank %}
+                        font-size: {{ block.settings.font_size_banner_title }};
+                        {% endif %}
+                        {% if block.settings.color_banner_title != blank %}
+                        color:{{ block.settings.color_banner_title }};
+                        {% endif %}">
+                {% render 'multilang' with block.settings.banner_title  %}
+                </h4>
+                {% endif %}
+
+                {% if block.settings.banner_heading != blank %}
+                <h2 class="banner-heading text-base leading-tight mb:mb-0 mb:pb-20"
+                    style="{% if block.settings.font_size_banner_heading != blank %}
+                        font-size: {{ block.settings.font_size_banner_heading }};
+                        {% endif %}
+                        {% if block.settings.color_banner_heading != blank %}
+                        color:{{ block.settings.color_banner_heading }};
+                        {% endif %}">
+                {% render 'multilang' with block.settings.banner_heading  %}
+                </h2>
+
+                <div class="block-content mb-0">
+                    {% if section.settings.display_checkbox_gender %}
+                    <div class="subscribe-checkbox text-white items-center justify-center d-flex mb-25 mb:mb-20 space-x-3">
+                        <div class="d-flex space-x-15">
+                            <div class="d-flex items-center"><input id="c1" type="checkbox"><label class="mb-0" for="c1"></label></div>
+                          {% if shop.locale == 'ar' %}	 
+                          <span class="ext-base font-400"><ly-as-254375>نساء</ly-as-254375> </span>
+                           {% else %}
+                           <span class="ext-base font-400"><ly-as-254376>WOMAN</ly-as-254376></span>
+                           {% endif %}
+                        </div>
+                        <div class="d-flex space-x-15">
+                            <div class="d-flex items-center"><input id="c2" type="checkbox"><label class="mb-0" for="c2"></label></div>
+                           {% if shop.locale == 'ar' %}  
+                          <span class="ext-base font-400"> <ly-as-254377>رجال</ly-as-254377> </span>
+                          {% else %}
+                          <span class="ext-base font-400"><ly-as-254378>MAN</ly-as-254378></span>
+                           {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% render 'newsletter-form-block' %}
+
+                    {% if section.settings.text_under_form != blank %}
+                    <div class="text-white text-center font-400 mx-auto mt-5 leading-tight mb:leading-normal" style="max-width: 490px; width: 85%;">{{ section.settings.text_under_form }}</div>
+                    {% endif %}
+
+
+                    {% if section.settings.link_insta != blank %}
+                    <a href="{{ section.settings.link_insta }}" class="text-white mt-25 d-flex w-fit mx-auto">
+                        {% render 'icon-insta' %}
+                    </a>
+                    {% endif %}
+
+                </div>
+
+                {% endif %}
+               
+            </div>
+            {% endif %}  
+        </div>
+        <style>
+            .footer-top-newsletter .banner-large-img{
+                {% if block.settings.image_new != blank %}
+                background: url({{ block.settings.image_new | img_url: '2048x' }});
+                background-position: center top;
+                background-repeat: repeat-x;
+                background-attachment: fixed;
+                background-size: cover;
+                text-align: center;
+                {% else %}
+                background: #232323;
+                background-position: center top;
+                background-repeat: repeat-x;
+                background-attachment: fixed;
+                background-size: cover;
+                text-align: center;
+                {% endif %}
+            }
+            .footer-top-newsletter .block-content .input-group-field{
+                color: {{ block.settings.ft_input_text }};
+                border: 1px solid {{ block.settings.ft_input_br }};
+                background: {{ block.settings.ft_input }};
+            }
+            .footer-top-newsletter .banner-large-img .block-content .content-input i{
+                color: {{ block.settings.ft_input_text }};
+            }
+            .footer-top-newsletter .block-content .input-group-field::-webkit-input-placeholder {
+              color: {{ block.settings.ft_input_text }} !important;
+              opacity: 1;
+            }
+            .footer-top-newsletter .block-content .input-group-field::-moz-placeholder {
+              color: {{ block.settings.ft_input_text }} !important;
+            }
+            .footer-top-newsletter .block-content .input-group-field::-ms-input-placeholder {
+              color: {{ block.settings.ft_input_text }} !important;
+            }
+            .footer-top-newsletter .block-content .input-group-field::-moz-placeholder {
+              color: {{ block.settings.ft_input_text }} !important;
+            }
+            .footer-top-newsletter .block-content .btn{
+                background: {{ block.settings.ft_submit }};
+                color: {{ block.settings.ft_submit_text }};
+                border: 1px solid {{ block.settings.ft_submit_br }};
+            }
+            .footer-top-newsletter .block-content .btn:hover{
+                background: {{ block.settings.ft_submit_hover }};
+                color: {{ block.settings.ft_submit_text_hover }};
+                border: 1px solid {{ block.settings.ft_submit_br_hover }};
+            }
+            .footer-top-newsletter .social-icons li a{
+                color: {{ block.settings.color_social }};
+            }
+            @media (max-width: 767px) {
+                .footer-top-newsletter .banner-content .banner-title{
+                    color: {{ block.settings.color_banner_title }} !important;
+                }
+                .footer-top-newsletter .banner-content .banner-heading{
+                    color: {{ block.settings.color_banner_heading }} !important;
+                }
+            }
+            .subscribe-checkbox .items-center {
+                display: block;
+                position: relative;
+                margin-bottom: 12px;
+                cursor: pointer;
+                font-size: 22px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            /* Hide the browser's default checkbox */
+            .subscribe-checkbox .items-center input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+            /* Create a custom checkbox */
+            .subscribe-checkbox label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 16px;
+                width: 16px;
+                padding: 0!important;
+                border: 1px solid #c4c4c4;
+            }
+
+            /* On mouse-over, add a grey background color */
+            .subscribe-checkbox .items-center:hover input ~ label {
+                /*background-color: #ccc;*/
+            }
+
+            /* When the checkbox is checked, add a blue background */
+            .subscribe-checkbox .items-center input:checked ~ label {
+                /*background-color: #2196F3;*/
+            }
+
+            /* Create the checkmark/indicator (hidden when not checked) */
+            label:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+
+            /* Show the checkmark when checked */
+            .subscribe-checkbox .items-center input:checked ~ label:after {
+                display: block;
+            }
+
+            /* Style the checkmark/indicator */
+            .subscribe-checkbox .items-center label:after {
+                left: 5px;
+                top: 2px;
+                width: 4px;
+                height: 8px;
+                border: solid white;
+                border-width: 0 2px 2px 0;
+                -webkit-transform: rotate(45deg) !important;
+                -ms-transform: rotate(45deg) !important;
+                transform: rotate(45deg) !important;
+            }
+            .theme-rtl .subscribe-checkbox .items-center label:after{
+                left: auto;
+                right: 5px;
+            }
+            .subscribe-checkbox input[type=checkbox] + label:before,
+            .subscribe-checkbox input:checked + label::before {
+              content: none !important;
+            }
+
+            .footer-top-newsletter .block-content .input-group-field {
+              color: #5f5f5f;
+              border: 1px solid #ffffff;
+              background: #ffffff;
+            }
+
+            .footer-top-newsletter .banner-large-img .block-content .input-group-field {
+              min-width: 330px;
+              padding: 15px 20px;
+              height: 50px;
+              text-align: left;
+              margin-right: unset;
+              display: inline-block;
+            }
+
+            .footer-top-newsletter .banner-large-img {
+              background-attachment: inherit !important;
+            }
+            @media screen and ( max-width: 991px ){
+                .footer-top-newsletter .banner-large-img .banner-content .banner-heading{
+                    font-size: 14px!important;
+                    line-height: 1.25;
+                }
+                .footer-top-newsletter .banner-large-img .banner-content .btn,
+                .footer-top-newsletter .banner-large-img .banner-content .block-content .content-input,
+                .footer-top-newsletter .banner-large-img .block-content .input-group-field{
+                    min-width: unset;
+                    margin: 0;
+                }
+                .footer-top-newsletter .banner-large-img .banner-content .btn,
+                .footer-top-newsletter .banner-large-img .block-content .input-group-field{
+                    height: 30px;
+                    padding: 5px 10px;
+                }
+                .footer-top-newsletter .banner-large-img .block-content .input-group-field{
+                    width: 213px;
+                }
+            }
+
+        </style>
+    {% endfor %}
+    </div>
+</div>
+
+<style>
+  {% assign margin_bottom =  section.settings.margin_bottom %}  
+
+    @media (max-width: 767px) {
+        #custom-block-{{ section.id }} {
+            margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+        #custom-block-{{ section.id }} {
+            margin-bottom: {{ section.settings.margin_bottom_tab }}px;
+        }
+    }
+  
+    @media (min-width: 1200px) {
+        #custom-block-{{ section.id }} {
+        margin-bottom: {{ margin_bottom }}px;
+        }
+    } 
+
+</style>
+{% endif %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Custom Block Newsletter",
+    "class": "custom-block-newsletter newsletter-block-sections",
+    "max_blocks": 1,
+    "settings": [
+        {
+            "type": "header",
+            "content": "Header"
+        },
+        {
+            "type": "checkbox",
+            "id": "display_block_newsletter",
+            "label": "Display Block Newsletter?",
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": "Display"
+        },
+        {
+            "type": "checkbox",
+            "id": "display_checkbox_gender",
+            "label": "Show check box gender",
+            "default": true
+        },
+        {
+            "type" : "text",
+            "id": "text_under_form",
+            "label": "Text under form"
+        },
+        {
+            "type" : "url",
+            "label" : "Instagram Link",
+            "id" : "link_insta"
+        },
+        {
+            "type": "header",
+            "content": "Margin Bottom:"
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom_mb",
+            "label": "Mobile",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom_tab",
+            "label": "Tablet",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0
+        },             
+        {
+            "type": "range",
+            "id": "margin_bottom",
+            "label": "Margin Bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0
+        }    
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Newsletter Block",
+            "settings": [           
+                {
+                    "type": "image_picker",
+                    "id": "image_new",
+                    "label" : "Select Image"
+                },
+                {
+                    "type": "header",
+                    "content": "Banner Content"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title",
+                    "label" : "Banner Title",
+                    "default" : "Newsletter Sign Up"
+                },
+                {
+                    "type" : "text",
+                    "id" : "font_size_banner_title",
+                    "label" : "Title Font Size ",
+                    "default" : "20px"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_banner_title",
+                    "label" : "Title Color",
+                    "default" : "#ffffff"
+                },
+
+                {
+                    "type" : "text",
+                    "id" : "banner_heading",
+                    "label" : "Banner Heading",
+                    "default" : "Receive our latest updates about our products and promotions."
+                },
+                {
+                    "type" : "text",
+                    "id" : "font_size_banner_heading",
+                    "label" : "Heading Font Size ",
+                    "default" : "12px"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_banner_heading",
+                    "label" : "Heading Color",
+                    "default" : "#ffffff",
+                    "info": "======================="
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_input",
+                    "label" : "Input Button Background",
+                    "default" : "#ffffff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_input_br",
+                    "label" : "Input Button Border Color",
+                    "default" : "#ffffff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_input_text",
+                    "label" : "Input Button Text Color",
+                    "default" : "#5f5f5f"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit",
+                    "label" : "Submit Button Background",
+                    "default" : "#0f0f0f"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_br",
+                    "label" : "Submit Button Border",
+                    "default" : "#0f0f0f"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_text",
+                    "label" : "Submit Button Text Color",
+                    "default" : "#ffffff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_hover",
+                    "label" : "Submit Button Background Hover",
+                    "default" : "#fff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_br_hover",
+                    "label" : "Submit Button Border Hover",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_text_hover",
+                    "label" : "Submit Button Text Color Hover",
+                    "default" : "#232323",
+                    "info": "======================="
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Block Newsletter",
+            "category": "Newsletter",
+            "blocks": [
+                {
+                    "type": "image"
+                }         
+            ]
+        }
+    ]
+  }
+{% endschema %}

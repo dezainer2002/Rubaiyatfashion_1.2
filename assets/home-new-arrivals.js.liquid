@@ -1,0 +1,75 @@
+window.addEventListener('load', function() {
+  adjustHeightsOfItems();
+});
+
+var wheeldelta = {
+  x: 0,
+  y: 0
+};
+var wheeling;
+
+$( window ).scroll(function () {
+  try {
+    clearTimeout( wheeling );
+    wheeling = setTimeout(function() {
+      wheeling = undefined;
+
+      wheeldelta.x = 0;
+      wheeldelta.y = 0;
+
+      adjustHeightsOfItems();
+    }, 250);
+
+  }
+  catch ( err ) {
+    console.log ( 'ERROR window scroll', err.message );
+  }
+});
+
+function adjustHeightsOfItems() {
+  var maxHeight = 0;
+
+  $( '.home-new-arrivals-sections .grid-item' ).each(function() {
+    const getImgHeight    =   $(this).find( '.inner-top .product-image picture img' ).height();
+    if ( getImgHeight > maxHeight ) {
+      maxHeight = getImgHeight;
+    }
+  });
+
+  $( '.home-new-arrivals-sections .grid-item .inner-top .product-image picture img' ).css( 'height', `${ maxHeight }px` );
+}
+
+var rtime;
+var timeout = false;
+var delta = 200;
+$(window).resize(function() {
+  try {
+    rtime = new Date();
+    if (timeout === false) {
+      timeout = true;
+      setTimeout(resizeend, delta);
+    }
+  }
+  catch ( err ) {
+    console.log ( 'ERROR window resize', err.message );
+  }
+});
+
+function resizeend() {
+  try {
+    if (new Date() - rtime < delta) {
+      setTimeout(resizeend, delta);
+    } else {
+      timeout = false;
+      $( '.home-new-arrivals-sections .grid-item .inner-top .product-image picture img' ).css( 'height', `unset` );
+      screenResizing();
+    }
+  }
+  catch ( err ) {
+    console.log ( 'ERROR resizeend', err.message );
+  }
+}
+
+function screenResizing() {
+  adjustHeightsOfItems();
+}

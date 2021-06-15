@@ -1,0 +1,56 @@
+<div class="custom-width">
+  <div class="main__tableText">
+    <div class="main__imageText--text">
+      {% if section.settings.title != blank %}
+      <h2 class="content__title">
+        {{ section.settings.title }}
+      </h2>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+      <h3 class="content__subtitle">
+        {{ section.settings.subtitle }}
+      </h3>
+      {% endif %}
+      {% if section.settings.text != blank %}
+      <div class="content__text">
+        {{ section.settings.text }}
+      </div>
+      {% endif %}
+      <div class="table"><table style="width:100%"><tr><th></th><th><img src="//cdn.shopify.com/s/files/1/0533/9525/9551/files/bronze.jpg?v=1621514324" class="lazyload" alt="Bronze"></th><th><img src="//cdn.shopify.com/s/files/1/0533/9525/9551/files/silver.jpg?v=1621514482" class="lazyload" alt="Silver"></th><th><img src="//cdn.shopify.com/s/files/1/0533/9525/9551/files/gold.jpg?v=1621591102" class="lazyload" alt="Gold"></th></tr><tr><td><ly-as-293402>Earn points</ly-as-293402></td><td><ly-as-286503>1 point per 100 SAR/10 BD  spend</ly-as-286503></td><td><ly-as-293403>2 points per 100 SAR/10 BD spend</ly-as-293403></td><td><ly-as-293346>3 points per 100 SAR/10 BD spend</ly-as-293346></td></tr><tr><td><ly-as-286505>Access to reward partners</ly-as-286505></td><td>X</td><td>X</td><td>X</td></tr><tr><td><ly-as-286506>Bonus points campaigns</ly-as-286506></td> <td>X</td><td>X</td><td>X</td> </tr><tr><td><ly-as-286507>Prize draw competition entry</ly-as-286507></td><td>X</td><td>X</td><td>X</td></tr><tr><td><ly-as-286508>Event/experience invitations</ly-as-286508></td><td></td><td>X</td><td>X</td></tr><tr><td><ly-as-286509>Percentage off day</ly-as-286509></td><td></td><td><ly-as-286510>x (5%)</ly-as-286510></td><td><ly-as-293347>x (10%)</ly-as-293347></td></tr><tr><td><ly-as-286511>Personal shopping experiences</ly-as-286511></td><td></td><td></td><td></td></tr></table></div>
+      {% if section.settings.text-bottom != blank %}
+      <div class="p-note">{{ section.settings.text-bottom }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Custom Table Text",
+    "settings": [
+      {
+        "type" : "text",
+        "id" : "title",
+        "label" : "Heading",
+        "default" : "TIERS & BENEFITS"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "Sub Heading",
+        "default" : "THE CARD WITH UNLIMITED POTENTIAL"
+      },
+	  {
+        "type" : "richtext",
+        "id" : "text-bottom",
+        "label" : "Text Note"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

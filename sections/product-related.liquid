@@ -1,0 +1,71 @@
+{% assign min = 1 %}
+{% assign max = collections['all'].products.count %}
+{% assign diff = max | minus: min %}
+{% assign randomNumber1 = "now" | date: "%N" | modulo: diff | plus: min %}
+{% assign randomNumber2 = "now" | date: "%N" | modulo: diff | plus: min %}
+{% if randomNumber2 == randomNumber1 %}
+{% assign randomNumber2 = "now" | date: "%N" | modulo: diff | plus: min %}
+{% endif %}
+{% assign randomNumber3 = "now" | date: "%N" | modulo: diff | plus: min %}
+{% if randomNumber3 == randomNumber1 or randomNumber3 == randomNumber2 %}
+    {% assign randomNumber3 = "now" | date: "%N" | modulo: diff | plus: min %}
+{% endif %}
+{% assign randomNumber4 = "now" | date: "%N" | modulo: diff | plus: min %}
+{% if randomNumber4 == randomNumber1 or randomNumber4 == randomNumber2 or randomNumber4 == randomNumber3 %}
+    {% assign randomNumber4 = "now" | date: "%N" | modulo: diff | plus: min %}
+{% endif %}
+
+
+
+<div id="product-related">
+    <div class="related-products" data-featured-products>
+            {% if section.settings.related_title %}
+                <div class="widget-title not-before">
+                    <h3 class="box-title">
+                        <span class="title">
+                          {% render 'multilang' with section.settings.related_title %}
+                        </span>
+                    </h3>
+                </div>
+            {% endif %}
+            <div class="widget-product">
+                <div class="products-grid grid--uniform grid--view-items row" data-row="4" >
+                    <div class="grid-item small--one-half medium-up--one-quarter col-3 ">
+                        {% assign product1 = collections['all'].products[randomNumber1] %}
+                        {% render 'product-grid-item' with product1 as product, check_product: true %}
+                    </div>
+                    <div class="grid-item small--one-half medium-up--one-quarter col-3 ">
+                        {% assign product2 = collections['all'].products[randomNumber2] %}
+                        {% render 'product-grid-item' with product2 as product, check_product: true %}
+                    </div>
+                    <div class="grid-item small--one-half medium-up--one-quarter col-3 ">
+                        {% assign product3 = collections['all'].products[randomNumber3] %}
+                        {% render 'product-grid-item' with product3 as product, check_product: true %}
+                    </div>
+                    <div class="grid-item small--one-half medium-up--one-quarter col-3 ">
+                        {% assign product4 = collections['all'].products[randomNumber4] %}
+                        {% render 'product-grid-item' with product4 as product, check_product: true %}
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% schema %}
+    {
+    "name": "Shop The Look",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_related_products",
+            "label": "Show related products",
+            "default": false
+        },
+        {
+            "id": "related_title",
+            "type": "text",
+            "label": "Section title",
+            "default": "SHOP THE LOOK"
+        }
+    ]
+    }
+{% endschema %}

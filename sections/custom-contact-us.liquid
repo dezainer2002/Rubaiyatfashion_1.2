@@ -1,0 +1,41 @@
+<div class="custom-width">
+  <div class="main__imageText">
+    <div class="main__imageText--content">
+      {% if section.settings.title != blank %}
+      <h2 class="content__title">
+        {{ section.settings.title }}
+      </h2>
+      {% endif %}
+      {% if section.settings.subtext != blank %}
+      <div class="content__text">
+        {{ section.settings.subtext }}
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Custom Contact Us",
+    "settings": [
+      {
+        "type" : "text",
+        "id" : "title",
+        "label" : "Heading",
+        "default" : "CONTACT US"
+      },
+      {
+        "type" : "richtext",
+        "id" : "subtext",
+        "label" : "Sub Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,301 @@
+{% comment %}ly_liquid_scripts_begin{% endcomment %}{% capture ly_liquid_content %}{% comment %}ly_liquid_scripts_end{% endcomment %}<!doctype html >
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NBNBWG7');</script>
+<!-- End Google Tag Manager -->
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape | split: '[/countdown]' | last | strip_html }}">
+  {% endif %}
+
+  <!-- Product meta ================================================== -->
+  {% render 'fb-open-graph-tags' %}
+  {% render 'twitter-card' %}
+
+  <!-- Helpers ================================================== -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  {{'//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'| script_tag}}
+  {{ '//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js' | script_tag }}
+{{'//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css' | stylesheet_tag }}
+{{'//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css' | stylesheet_tag }}
+  <link canonical-shop-url="{{ shop.url }}/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui">
+  <link rel="preload" href="{{ 'vendor.min.css' | asset_url }}" as="style">
+  <!-- <link rel="preload" href="{{ 'theme-styles.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'theme-styles-responsive.css' | asset_url }}" as="style"> -->
+  <link rel="preload" href="{{ 'home-styles.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'theme.min.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'custom.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'theme-settings.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'header-05.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'header-06.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'footer-06.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'footer-07.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'product-skin.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'layout_style_1170.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'layout_style_fullwidth.css' | asset_url }}" as="style">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+ {% if shop.locale == 'ar' %}
+   <link rel="preload" href="{{ 'theme-styles-rtl.scss.css' | asset_url }}" as="style">
+  {% endif %}
+  <!-- Favicon -->
+  {% if settings.favicon != blank %}
+  <link rel="shortcut icon" href="{{ settings.favicon | `img_url: '32x32' }}" type="image/png">
+  {% endif %}
+  
+  <!-- Styles -->
+  {% render 'css-variables' %}
+  {% render 'head_styles' %}
+  <link type="text/css" href="{{ 'utils.css' | asset_url }}" rel="stylesheet">
+  <link type="text/css" href="{{ 'cart.css' | asset_url }}" rel="stylesheet">
+
+   <!-- Scripts -->
+  {% render 'head_scripts' %}
+
+  <!-- Header hook for plugins ================================ -->
+  {{ content_for_header }}
+
+  <!--[if lt IE 9]>
+  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+  <![endif]-->
+
+  {% comment %}
+    If you store has customers disabled, you can remove the following JS file
+  {% endcomment %}
+  
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% render 'linked-options' %}
+  {% if template contains 'product' %}
+  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+  {% endif %}
+
+<!--begin-boost-pfs-filter-css-->
+  {% render 'boost-pfs-style' %}
+<!--end-boost-pfs-filter-css-->
+
+</head>
+
+    {% if settings.layout_body == 'full' %}    
+        {%- assign layout_class = 'body-full' -%}   
+    {% elsif settings.layout_body == 'boxed' %} 
+        {%- assign layout_class = 'body-boxed' -%} 
+    {% endif %}
+
+    {% if settings.header_layout == 'vertical' %}
+        {%- assign header_class = 'header-vertical-tpl' -%} 
+    {% endif %}
+
+<body data-url-lang="{{ routes.cart_url }}" id="{{ page_title | handle }}" class="{% if shop.locale == 'ar' %} theme-rtl{% endif %}{{ header_class }} {{ layout_class }} {% if customer %}customer-logged-in {% endif %}
+{% if template.suffix == 'landing' %}template-index{% else %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% endif %}
+{% if settings.style_product_grid == 'style_product_grid_2' %} style_product_grid_2{% elsif settings.style_product_grid == 'style_product_grid_3' %} style_product_grid_3{% endif %}{% if settings.layout_style == 'layout_style_1170' %} layout_style_1170{% elsif settings.layout_style == 'layout_style_fullwidth' %} layout_style_fullwidth{% else %} layout_default{% endif %}{% unless settings.enable_before_you_leave_mb %} before-you-leave-disableMobile{% endunless %}{% if settings.product_layout == 'skin_1' %} product_layout_skin_1{% endif %}">
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBNBWG7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  	{% if template contains 'index' %}  
+    <h1 style="display: none">{{ page_title | split: '|' | first }}</h1>
+    {% endif %}
+    {% render 'wrapper-header' %}   
+
+    {% if settings.header_layout == 'vertical' %}
+    <div class="flex-nav-vertical">
+    {% endif %}    
+
+    {% if settings.header_layout == 'vertical' %}
+    {% section 'navigation-vertical-menu' %}
+    {% endif %}
+	{% render 'scheme' %}
+    <div class="wrapper-container wrapper-body">	
+        <main class="main-content" role="main">      
+            {{ content_for_layout }}
+        </main>    
+   
+        {% if settings.footer_layout == 'default' %}        
+        {% section 'footer' %}
+        {% elsif settings.footer_layout == 'parallax' %}
+        {% section 'footer-parallax' %}
+        {% elsif settings.footer_layout == '02' %}
+        {% section 'footer-2' %}
+        {% elsif settings.footer_layout == '03' %}
+        {% section 'footer-3' %}
+        {% elsif settings.footer_layout == '04' %}
+        {% section 'footer-4' %}
+        {% elsif settings.footer_layout == '05' %}
+        {% section 'footer-5' %}
+        {% elsif settings.footer_layout == '06' %}
+        {% section 'footer-6' %}
+        {% elsif settings.footer_layout == '07' %}
+        {% section 'footer-7' %}
+        {% endif %}
+
+        {% unless template contains 'product' %}
+        <div class="footbar-fixed">
+            {% section 'someone-purchased' %}
+            {% section 'GDPR-modal' %}
+        </div>
+        {% endunless %}
+      {% if settings.enable_backtotop %}
+        <div id="back-top" style="display: none;">
+            <a class="nav_up" href="#top" title="Back to top">
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+            </a>
+        </div>  
+      {% endif %}
+    </div>
+
+    {% if settings.header_layout == 'vertical' %}
+    </div>
+    {% endif %}
+
+    {% if settings.enable_compare_product and template == 'collection' %}
+      <div class="compare-link">
+        <a href="javascript:void(0)" data-compare-selected>
+          <span class="compare-text" {% if settings.enable_multilang %}data-translate="collections.general.compare_selected"{% endif %}>{{ 'collections.general.compare_selected' | t }}</span>
+          <span class="countPill countPill--positive countPill--alt" data-compare-count></span>
+        </a>
+      </div>
+    {% endif %}
+    
+    {% render 'footer_scripts' %}
+    
+    {% render 'sweettooth-widgets' %}
+
+    {% render 'search-autocomplete' %}
+    
+    {% if settings.header_layout == 'default' %}
+      {% render 'customer_links' %}
+    {% else %}
+    <div class="translate-header" data-translate-header>
+        {% render 'customer_links' %}
+        {% render 'wrapper-top-cart' %}
+    </div>
+    {% endif %}
+
+    {% render 'size-chart' %}
+
+  	{% render 'size-chart-quickview' %}
+        
+    {% render 'message-modal' %}
+
+    {% render 'newsletter' %}      
+    
+    {% if template contains 'product'%}
+      {% render 'ask_an_expert' %}
+    {% endif %}
+
+    {% if template contains 'product'%}
+      {% render 'compareColor-popup' %}
+    {% endif %}
+    
+    {% render 'recently-viewed-products'%}
+    <div class="wrapper-overlay"></div>
+      <script>
+    var theme = {
+      breakpoints: {
+        medium: 750,
+        large: 990,
+        widescreen: 1400
+      },
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        regularPrice: {{ 'products.product.regular_price' | t | json }},
+        salePrice: {{ 'products.product.sale_price' | t | json }},
+        sale: {{ 'products.product.on_sale' | t | json }},
+        fromLowestPrice: {{ 'products.product.from_lowest_price_html' | t: lowest_price: '[price]' | json }},
+        vendor: {{'products.product.vendor' | t | json }},
+        showMore: {{ 'general.filters.show_more' | t | json }},
+        showLess: {{ 'general.filters.show_less' | t | json }},
+        searchFor: {{ 'general.search.search_for' | t | json }},
+        addressError: {{ 'sections.map.address_error' | t | json }},
+        addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
+        addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
+        authError: {{ 'sections.map.auth_error_html' | t | json }},
+        newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
+        external: {{ 'general.accessibility.link_messages.external' | t | json }},
+        newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }},
+        removeLabel: {{ 'cart.label.remove' | t: product: '[product]' | json }},
+        update: {{ 'cart.label.update' | t | json }},
+        quantity: {{ 'cart.label.quantity' | t | json }},
+        discountedTotal: {{ 'cart.label.discounted_total' | t | json }},
+        regularTotal: {{ 'cart.label.regular_total' | t | json }},
+        priceColumn: {{ 'cart.label.price_column' | t | json }},
+        quantityMinimumMessage: {{ 'products.product.quantity_minimum_message' | t | json }},
+        cartError: {{ 'cart.general.cart_error' | t | json }},
+        removedItemMessage: {{ 'cart.general.removed_item_html' | t: quantity: '[quantity]', link: '[link]' | json }},
+        unitPrice: {{ 'products.product.unit_price_label' | t | json }},
+        unitPriceSeparator: {{ 'general.accessibility.unit_price_separator' | t | json }},
+        oneCartCount: {{ 'cart.popup.cart_count' | t: count: 1 | json }},
+        otherCartCount: {{ 'cart.popup.cart_count' | t: count: '[count]' | json }},
+        quantityLabel: {{ 'cart.popup.quantity_label' | t: quantity_count: '[count]' | json }},
+        products: {{ 'general.search.products' | t | json }},
+        loading: {{ 'general.search.loading' | t | json }},
+        number_of_results: {{ 'general.search.number_of_results' | t: result_number: '[result_number]', results_count: '[results_count]' | json }},
+        number_of_results_found: {{ 'general.search.number_of_results_found' | t: results_count: '[results_count]' | json }},
+        one_result_found: {{ 'general.search.one_result_found' | t | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }},
+      moneyFormatWithCurrency: {{ shop.money_with_currency_format | json }},
+      settings: {
+        predictiveSearchEnabled: {{ settings.predictive_search_enabled | json }},
+        predictiveSearchShowPrice: {{ settings.predictive_search_show_price | json }},
+        predictiveSearchShowVendor: {{ settings.predictive_search_show_vendor | json }}
+      },
+      stylesheet: "{{ 'theme.css' | asset_url }}"
+    }
+
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+  
+  <!-- Add JS here -->
+  
+  <script>
+  
+  $(document).ready( function() {
+  $('a[href^="/account/logout"]').on("click", function() {
+    $.ajax({
+        type: "POST",
+        url: '/cart/clear.js',
+        success: function(){
+           window.location.href =  'https://www.rubaiyatfashion.com/account/logout'
+        },
+        dataType: 'json'
+      });
+    return false;
+  });
+});
+  
+  </script>
+  
+  <!-- Add JS Here ENd -->
+
+<!--begin-boost-pfs-js-->
+  {% render 'boost-pfs' %}
+<!--end-boost-pfs-js-->
+<!-- langify-v2-scripts-begin -->{% comment %}ly_liquid_scripts_begin{% endcomment %}{% endcapture %}{% render 'ly-liquid-scripts' content: ly_liquid_content %}{% comment %}ly_liquid_scripts_end{% endcomment %}{% comment %}ly_core_scripts_begin{% endcomment %}{% render 'ly-core-scripts' %}{% comment %}ly_core_scripts_end{% endcomment %}{% comment %}ly_switcher_factory_begin{% endcomment %}{% render 'ly-switcher-factory' %}{% comment %}ly_switcher_factory_end{% endcomment %}<!-- langify-v2-scripts-end --></body>
+</html>

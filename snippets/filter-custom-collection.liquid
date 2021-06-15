@@ -1,0 +1,258 @@
+{% render 'collection-header' %}
+<div class="custom-filter sidebar-filter" data-has-collapse>
+    <div class="sidebar ">
+        <a href="javascript:void(0)" title="{{ 'cart.general.close_cart' | t }}" class="close-sidebar close">
+            {% render 'icon-close' %}
+        </a>
+        <h4 class="filter-title text-center"><ly-as-254411>Filters</ly-as-254411></h4>
+        <div class="sidebar-filter" data-has-collapse>
+            {% if settings.category_layout == "right_sidebar" or settings.category_layout == "express_order" or template.suffix == 'express-order' or settings.category_layout == "mansory" or template.suffix == 'mansory' or settings.category_layout == "full_with" or template.suffix == 'fullwidth' or template.suffix == 'right-sidebar' or settings.category_layout == "with_banner" or template.suffix == 'with-banner' %}
+                <a href="javascript:void(0)" title="{{ 'cart.general.close_cart' | t }}" class="close-sidebar close">
+                    {% render 'icon-close' %}
+                </a>
+            {% endif %}
+
+            {% for block in section.blocks %}
+
+                {% if block.type == 'filter_color' %}
+                    {% if block.settings.enable %}
+                        <div class="widget sidebar-tags filter-color">
+                            {% assign tags = block.settings.list_tags | split: ',' %}
+
+                            {% liquid
+                                assign count = 0
+                                if current_tags != ''
+                                for t in tags
+                                assign tag = t | strip
+                                assign tag_value = tag | handleize
+                                if current_tags contains tag
+                                assign count = count | plus: 1
+                                endif
+                                endfor
+                                endif
+                            %}
+                            <select class="list-tags" {% if current_tag %}value='{{ current_tag }}'{% endif %}>
+                                <option style="display: none" value=""><ly-as-254412>Color</ly-as-254412></option>
+                                {% for t in tags %}
+                                    {% assign tag = t | strip %}
+                                    {% assign tag_value = tag | handleize %}
+                                    {% if collection.tags contains tag %}
+                                        <option value="{{ tag_value }}">
+                                        {% assign tag_value = tag %}
+                                        {{ tag_value }}
+                                        </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            {% render 'icon-down' %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+                {% if block.type == 'filter_text' %}
+                    {% if block.settings.enable %}
+                        {% liquid
+                            assign tags = block.settings.list_tags | split: ','
+                            assign count = 0
+                            assign size_tag = 0
+                            assign has_more = false
+                            if current_tags != ''
+                            for t in tags
+                            assign tag = t | strip
+                            assign tag_value = tag | handleize
+                            if current_tags contains tag
+                            assign count = count | plus: 1
+                            endif
+                            if collection.tags contains tag
+                            assign size_tag = size_tag | plus: 1
+                            endif
+                            endfor
+                            assign divi = size_tag | divided_by: 5
+                            assign module = size_tag | modulo: 5
+
+                            if divi > 1
+                            if block.settings.title == 'Size' and divi > 2
+                            assign has_more = true
+                            else
+                            assign has_more = true
+                            endif
+                            elsif divi == 1
+                            if module > 0 and block.settings.title != 'Size | Größe'
+                            assign has_more = true
+                            endif
+                            endif
+                            endif
+                        %}
+                        <div class="widget sidebar-tags filter-{{ block.settings.title | downcase }}">
+                            <select class="list-tags" data-filter="{{ block.settings.title | downcase }}">
+                                {% assign count_tags = 0 %}
+                                <option style="display:none;" value="">{{ block.settings.title }}</option>
+                                {% for t in tags %}
+                                    {% assign tag = t | strip %}
+                                    {% assign tag_value = tag | handleize %}
+                                    {% if current_tags contains tag %}
+                                        <option value="{{ tag_value | split: '|' | first }}" >
+                                            {{ tag | split: '|' | first }}
+                                        </option>
+                                    {% else %}
+                                        {% if collection.tags contains tag %}
+                                            {% assign count_tags = count_tags | plus: 1 %}
+                                            <option type="checkbox" value="{{ tag_value | split: '|' | first }}">
+                                                {{ tag | split: '|' | first }}
+                                            </option>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            {% render 'icon-down' %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <div class="refined-widgets"{% if has_refined == false %} style="display:none"{% endif %}>
+                <div class="widget-content">
+                    <ul class="refined">
+                        {% for t in current_tags %}
+                            {% assign tag = t | strip %}
+                            {% assign tag_value = tag | handleize %}
+                            <li>
+                                <input type="checkbox" value="{{ tag_value }}" {% if current_tags contains tag %}checked{% endif %}/>
+                                <a href="{{tag_value}}" class="selected-tag">
+                                        {{tag | split: '|' | first}}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+                                            <path d="M5.49722 5.00002L9.39705 1.10017C9.53435 0.962871 9.53435 0.740262 9.39705 0.602977C9.25974 0.465692 9.03713 0.465674 8.89985 0.602977L5 4.50282L1.10017 0.602977C0.962871 0.465674 0.740262 0.465674 0.602977 0.602977C0.465692 0.74028 0.465674 0.962889 0.602977 1.10017L4.50281 5L0.602977 8.89985C0.465674 9.03715 0.465674 9.25976 0.602977 9.39705C0.67162 9.46569 0.761602 9.5 0.851584 9.5C0.941567 9.5 1.03153 9.46569 1.10019 9.39705L5 5.49722L8.89983 9.39705C8.96847 9.46569 9.05846 9.5 9.14844 9.5C9.23842 9.5 9.32839 9.46569 9.39705 9.39705C9.53435 9.25974 9.53435 9.03713 9.39705 8.89985L5.49722 5.00002Z" fill="currentColor"/>
+                                            </svg>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-action">
+            <a href="#" class="clear-filter"><ly-as-254413>Clear</ly-as-254413></a>
+            <a href="#" class="btn close"><ly-as-254414>Show Results</ly-as-254414></a>
+        </div>
+        {% if section.settings.enable_product %}
+            <div class="widget sidebar-widget-product" data-sidebar-product>
+                {% if section.settings.title_product != blank %}
+                    <div class="widget-title">
+                        <h3 class="sidebar-title">
+                            {% render 'multilang' with section.settings.title_product %}
+                        </h3>
+                    </div>
+                {% endif %}
+
+                {% if section.settings.collection == blank %}
+                    <div class="widget-product">
+                        <div class="grid-item {{ grid_item_width }}">
+                            <div class="grid-view-item no-product">
+                                <div class="product-top">
+                                    <div class="not_img">
+                                        <ly-as-254415>Product Img</ly-as-254415>
+                                    </div>
+                                </div>
+
+                                <div class="product-bottom">
+                                    <div class="product-title">
+                            <span>
+                                <ly-as-254416>Your product's name</ly-as-254416>
+                            </span>
+                                    </div>
+
+                                    <div class="price-box">
+                                        <span> $250.00 </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <div class="widget-product">
+                        <div class="products-grid row">
+                            {% for product in collections[section.settings.collection].products limit:section.settings.limit %}
+                                <div class="grid-item col-12{% if settings.product_image_border %} grid-item-border{% endif %} ">
+                                    {% if settings.layout_style == 'layout_style_1170' %}
+                                        {% render 'product-grid-item-style-2', product: product, sectionId: section.id %}
+                                        {% elsif settings.layout_style == 'layout_style_fullwidth' %}
+                                        {% render 'product-grid-item-style-3', product: product, sectionId: section.id %}
+                                    {% else %}
+                                        {% render 'sidebar-product-grid' with product as product %}
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if section.settings.enable_img_1 %}
+            <div class="widget sidebar-banner">
+                {% if section.settings.image_img_1 != blank %}
+                    {% assign img_url = section.settings.image_img_1 | img_url: 'original', crop: 'center' %}
+                    {% assign preview_img = section.settings.image_img_1 %}
+
+                    {% if section.settings.link_img_1 != blank %}
+                        <a class="animate-scale adaptive_height" href="{{ section.settings.link_img_1 }}" style="padding-top: {{ 1 | divided_by: preview_img.aspect_ratio | times: 100 }}%">
+                    {% endif %}
+                    <img data-srcset="{{ img_url }}" alt="{{ section.settings.image_img_1.alt | default: shop.name }}"
+                         class="lazyload" data-sizes="auto">
+                    {% if section.settings.link_img_1 != blank %}
+                        </a>
+                    {% endif %}
+
+                {% else %}
+                    <div class="not_img">
+                        <ly-as-254417>210 x 165px</ly-as-254417>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if section.settings.enable_img_2 %}
+            <div class="widget sidebar-banner">
+                {% if section.settings.image_img_2 != blank %}
+                    {% assign img_url = section.settings.image_img_2 | img_url: 'original', crop: 'center' %}
+
+                    {% assign preview_img = section.settings.image_img_2 %}
+                    {% if section.settings.link_img_2 != blank %}
+                        <a class="animate-scale adaptive_height" href="{{ section.settings.link_img_2 }}" style="padding-top: {{ 1 | divided_by: preview_img.aspect_ratio | times: 100 }}%">
+                    {% endif %}
+                    <img data-src="{{ img_url }}" alt="{{ section.settings.image_img_2.alt | default: shop.name }}"
+                         class="lazyload" data-sizes="auto">
+                    {% if section.settings.link_img_2 != blank %}
+                        </a>
+                    {% endif %}
+
+                {% else %}
+                    <div class="not_img">
+                        <ly-as-254417>210 x 165px</ly-as-254417>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if section.settings.enable_custom_block %}
+            <div class="widget sidebar-cms-custom">
+                {% if section.settings.title_custom_block != blank %}
+                    <div class="widget-title">
+                        <h3 class="sidebar-title">
+                            {% render 'multilang' with section.settings.title_custom_block | escape  %}
+                        </h3>
+                    </div>
+                {% endif %}
+
+                <div class="widget-content">
+                    {% if section.settings.quote_custom_block != blank %}
+                        <div class="rte-setting">
+                            {{ section.settings.quote_custom_block | split: '|' | first }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>

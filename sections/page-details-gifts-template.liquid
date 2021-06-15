@@ -1,0 +1,2111 @@
+
+{% schema %}
+{
+  "name": "Section name",
+  "settings": []
+}
+{% endschema %}
+
+<style>
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.custom-modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+padding-top: 100px; /* Location of the box */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.custom-modal-content {
+background-color: #fefefe;
+margin: auto;
+padding: 20px;
+border: 1px solid #888;
+max-width: 60%;
+position: relative;
+//max-height: 80vh;
+max-width: 1170px;
+}
+
+/* The Close Button */
+.close {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+
+.back_cart {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.back_cart:hover,
+.back_cart:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+
+
+
+.payment-wrapper {
+  text-align: center;
+  max-width: 550px;
+  margin: 67px auto;
+  padding: 45px;
+  border: 1px solid #00000047;
+  background: #0000000d;
+}
+
+.login-wrapper {
+  text-align: center;
+  margin: 67px auto;
+  padding: 45px;
+  border: 1px solid #00000047;
+  background: #0000000d;
+}
+.login_register_iframe{
+      min-height: 800px;
+      width: 100%;
+      overflow: scroll;
+      }
+.theme-button {
+    color: #fff;
+  border: 1px solid #cf171f;
+  background: #cf171f;
+  padding: 7px 11px;
+}
+.model-header {
+  text-align: left;
+  font-weight: bold;
+  color: #000;
+  border-bottom: 2px solid lightgray;
+}
+
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content #active_gifts.tab-pane .column div:nth-child(3) button {
+  border: 1px solid #cf171f;
+  background: #cf171f;
+  padding: 5px 15px;
+  color: #fefefe;
+  }
+#my_profile .row {
+padding: 10px 0;
+}
+#my_profile .row .column {
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+text-align: left;
+    width: 100%;
+}
+#my_profile .row .column div:last-child {
+font-weight: bold;
+}
+
+#point_payment input {
+        background-color: white !important;
+  border-color: #cf171f;
+}
+
+.payment-wrapper .additional-checkout-buttons{
+  margin-top: -2px;
+}
+
+
+.gifts-popup-custom {
+height: 70%;
+overflow-y: hidden;
+}
+.gifts-popup-custom .gift-popup-wrapper .primary-tabs-row {
+display: flex;
+text-align: center;
+border-bottom: none;
+}
+.gifts-popup-custom .gift-popup-wrapper .primary-tabs-row li {
+flex: 1;
+}
+#mydiv3.gifts-popup-custom .gift-popup-wrapper .primary-tabs-row li:nth-child(2) {
+/* display: none; */
+}
+.gifts-popup-custom .gift-popup-wrapper .primary-tabs-row li > button {
+  margin-right: 0;
+  border: 1px solid #848484;
+  border-radius: 0;
+  background: #d6d6d673;
+    font-weight: bold;
+  width: 100%;
+  padding: 0.6em;
+  outline: none;
+}
+.gifts-popup-custom .gift-popup-wrapper .primary-tabs-row li.active > button {
+  border: 1px solid #848484;
+/*     border-bottom-color: #fff; */
+  background: transparent;
+    color: #cf171f;
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content .gifts-popup-heading {
+text-align: center;
+margin: 20px 0;
+font-weight: 600;
+font-size: 18px;
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content .secondary-tabs-row {
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin: 10px 0;
+border-bottom: none;
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content .secondary-tabs-row li > button {
+background: transparent;
+border: 1px solid #cf171f;
+border-radius: 0;
+padding: 5px 20px;
+  color: #000;
+margin-right: 8px;
+outline: none;
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content .secondary-tabs-row li.active > button {
+
+border: 1px solid #cf171f;
+color: #fff;
+background: #cf171f;
+
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content {
+  overflow-y: auto;
+  height: 44vh;
+  overflow-x: hidden;
+  padding: 5px 17px 5px 10px;
+  border: 1px solid #848484;
+    margin-bottom: 70px /* Changes 28-02-20 */
+}
+
+::-webkit-scrollbar {
+width: 9px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border: 1.5px solid #bdbdbd;
+  border-radius: 0;
+/*       border-top: none;
+  border-bottom: none; */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cf171f94;
+  border-radius: 0px;
+  box-shadow: inset 0 0 0px 1px white;
+  border: 1.5px solid #bdbdbd;
+  border-top: none;
+  border-bottom: none;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #cf171f; 
+}
+
+
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content .tab-pane .column {
+display: flex;
+text-align: left;
+padding: 10px 30px;
+align-items: center;
+border-bottom: 2px solid lightgray;
+margin-bottom: 15px;
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content .tab-pane .column:hover {
+  background: #ececec;
+}
+
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content .tab-pane .column div img {
+  width: 110px;
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content .tab-pane .column div:nth-child(2) {
+flex: 1;
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content .tab-pane .column div:nth-child(3) button {
+border: 1px solid lightgray;
+background: lightgray;
+padding: 5px 15px;
+color: #6d6d6d;
+}
+.gifts-popup-custom .gifts-popup-footer {
+position: absolute;
+  bottom: 0;
+  right: 0;
+  background: white;
+  width: 100%;
+  padding: 20px;
+    display: flex;  /* Changed 28-02-20 */
+  justify-content: space-between;  /* Changed 28-02-20 */
+}
+.gifts-popup-custom .gifts-popup-footer button {
+border: 1px solid #cf171f;
+background: #cf171f;
+color: #fff;
+padding: 2px 15px;
+}
+
+.gifts-popup-custom .gifts-popup-footer a {
+border: 1px solid #cf171f;
+background: #cf171f;
+color: #fff;
+padding: 2px 15px;
+}
+/* Changes Start 20-02-20 */
+#my_gifts {
+/*   	padding-bottom: 50px; */
+}
+
+.loader {
+display: none;
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #cf171f;
+  width: 15px;
+  height: 15px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  left: 5px;
+  top: 7px;
+}
+ 
+.loader_initial {
+
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #cf171f;
+  width: 45px;
+  height: 45px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: relative;
+  left: 175px;
+  top: 7px;
+}
+
+    .loader_page_initial{
+    
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #cf171f;
+  width: 45px;
+  height: 45px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: relative;
+  left: 750px;
+  top: 7px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+0% { -webkit-transform: rotate(0deg); }
+100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+  
+.btn-apply { position: relative; padding-left: 25px !important; }
+.btn-apply .loader {
+    display: block;	
+}
+
+#active_gifts .column .select { width: 30%; }
+/* changes end 20-02-20*/
+
+ #gift_msg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #3d4246;
+  color: white;
+  padding: 0.5em 2em;
+  border-radius: 1px;
+  display: none;
+}
+
+#gift_err_msg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #3d4246;
+  color: white;
+  padding: 0.5em 2em;
+  border-radius: 1px;
+  display: none;
+}
+
+#point_err_msg {
+  position: fixed;
+  top: 28%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: #3d4246;
+  color: white;
+  padding: 0 2em;
+  border-radius: 1px;
+  display: none;
+  font-size: 13px;
+}
+
+#select_gift_err_msg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #3d4246;
+  color: white;
+  padding: 0.5em 2em;
+  border-radius: 1px;
+  display: none;
+}
+
+#imp_changes_msg{
+position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #3d4246;
+  color: white;
+  padding: 0.5em 2em;
+  border-radius: 1px;
+  display: none;
+}
+
+/* Changes 03-02-20 START */
+.custom-modal-content {
+border: none;
+/* Changes 03-02-20 */
+max-width: 1170px;
+/* Changes 03-02-20 */
+height: auto;
+/* Changes 03-02-20 */
+max-height: unset;
+/* Changes 03-02-20 */
+}
+
+@media (max-width: 1199px) {
+.custom-modal-content {
+  max-width: 970px;
+}
+}
+@media (max-width: 991px) {
+.custom-modal-content {
+  max-width: 720px;
+}
+}
+@media (max-width: 767px) {
+.custom-modal-content {
+  max-width: 540px;
+}
+}
+
+
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content {
+border: none;
+/* Changes 03-02-20 */
+height: auto;
+/* Changes 03-02-20 */
+}
+.gifts-popup-custom .gifts-popup-footer {
+position: relative;
+/* Changes 03-02-20 */
+padding: 10px 0px;
+/* Changes 03-02-20 */
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content .tab-pane .column {
+padding: 10px;
+/* Changes 03-02-20 */
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content .tab-pane .column.active {
+background: #d0d0d0;
+/* Changes 03-02-20 */
+}
+.gifts-popup-custom .gifts-popup-footer a {
+padding: 5px 20px;
+/* Changes 03-02-20 */
+line-height: 2;
+/* Changes 03-02-20 */
+}
+.gifts-popup-custom .gifts-popup-footer button {
+padding: 2px 20px;
+/* Changes 03-02-20 */
+}
+.btn-apply .loader {
+top: 13px;
+/* Changes 03-02-20 */
+left: 8px;
+/* Changes 03-02-20 */
+}
+.btn-apply {
+padding-left: 30px !important;
+/* Changes 03-02-20 */
+padding-right: 10px !important;
+/* Changes 03-02-20 */
+}
+
+ /* Changes 03-02-20 END */
+
+/* Changes 24-11-20 START */
+
+#my_gifts {
+  height: 65vh;
+}
+.gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content {
+  height: 50vh;
+}
+#show_initial_page_loader {
+  height: 70px;
+  width: 100%;
+  position: relative;
+}
+
+.loader_page_initial {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -50%);
+}
+/* Changes 24-11-20 END */
+
+.login_register_iframe {
+  height: 860px;
+  width: 100%;
+  border: none;
+}
+.login-register-wrapper {
+    max-width: 500px;
+  margin: 0 auto;
+}
+
+ 
+  .gifts-popup-custom .gift-popup-wrapper > .tab-content .secondary-tabs-row { display: none; }
+  
+  @media only screen and (max-width: 989px) {
+  	  .gifts-popup-custom .gift-popup-wrapper .primary-tabs-row li button { font-size: 14px; }
+  }
+  
+  @media (max-width: 500px) {
+  
+    .custom-modal-content.gifts-popup-custom { zoom: 0.8; }
+  
+    .gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content .tab-pane .column div:nth-child(2) { padding: 10px;}
+    .gifts-popup-custom .gift-popup-wrapper > .tab-content > .tab-pane > .tab-content .tab-pane .column { padding: 0;}
+  }
+
+  
+  .gifts-popup-custom .gifts-popup-footer button {
+    border: none;
+    border-left: 1px solid white;
+  }
+
+
+
+</style>
+
+  <div id="show_initial_page_loader"><div class="loader_page_initial"></div></div>
+<div id="mydiv1" class="custom-modal-content gifts-popup-custom">
+  
+  <p style="
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+">Reward Members Login </p>
+
+  <!--<div class="model-header">Verification</div>-->
+  <div class="gift-popup-wrapper">
+  <ul class="nav nav-tabs primary-tabs-row">
+      <li class="active"><button type="button" href="#member_login">Login</button></li>
+      <li><button type="button" href="#member_register">Register</button></li>
+  </ul>
+
+  <div class="tab-content login-register-wrapper">
+  <div id="member_register" class="login-wrapper tab-pane fade">
+      <div class="row">
+      <iframe id="register" src="" class="login_register_iframe"></iframe>  
+      </div>
+      </div>
+      <div id="member_login" class="login-wrapper tab-pane fade in active">	    
+      <div class="row">
+      <iframe id="login" src="" class="login_register_iframe"></iframe> 
+      </div>
+
+
+      </div>
+  </div>
+
+</div>
+</div>
+</div>
+  <div id="mydiv2" class="custom-modal-content">
+    <div class="model-header">Verification</div>
+  <div  class="payment-wrapper">
+  <div id="point_payment2">
+    <p>We have sent (OTP) to your Mobile Number <b> {{customer.phone}} </b> </p>
+    <p>Fill OTP Received on your Mobile Number</p>
+    <p>
+      <input id="verify_otp" type="password">
+      <a id="verify_me" class=" btn btn--small-wide additional-checkout-buttons">VERIFY</a>
+    </p>
+  </div>
+</div>
+</div>
+  
+
+<div id="mydiv3" class="custom-modal-content gifts-popup-custom">
+    <div class="gift-popup-wrapper">
+    <ul class="nav nav-tabs primary-tabs-row">
+      <li class="active"><button type="button" href="#my_profile">My Profile</button></li>
+      <li><button type="button" href="#point_payment">Pay with Treats Credit</button></li>
+      <li ><button type="button" href="#my_gifts" >My Gifts</button></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="my_gifts" class="tab-pane fade">
+        <div class="gifts-popup-heading">Select gifts to be applied in your order</div>
+        <ul class="nav nav-tabs secondary-tabs-row">
+          <li class="active"><button type="button" href="#active_gifts" >Active</button></li>
+          <li><button type="button" href="#inactive_gifts">Inactive</button></li>
+        </ul>
+        <div class="tab-content">
+            <div id="active_gifts" class="tab-pane fade in active">
+              
+               
+              </div>
+                        <div id="inactive_gifts" class="tab-pane fade ">
+
+            </div>
+            </div>
+
+        </div>
+       <div id="point_payment" class="payment-wrapper tab-pane fade">
+                
+        <!-- changes start 20-08-28 -->
+        <p>Pay with Treats Credit</p>
+        <p>
+          <input id="my_input_points">
+          <button id="points_button" class="theme-button"><div class="loader"></div>PAY</button>
+          <button id="points_remove_button" class="theme-button"><div class="loader"></div>Remove</button>
+        </p>
+         <div id="sub_cust_points">
+            </div>
+         <!-- changes END 20-08-28 -->
+      </div>
+      <div id="my_profile" class="payment-wrapper tab-pane fade in active">
+        <div id="show_loader"><div class="loader_initial"></div></div>
+        <div id="hide_loader">
+          <div class="row">
+              <div class="column">
+                  <div style="width: 25%;float: left;">
+                      <p>Name</p></div>
+                      <div id="cust_name" style="width: 25%;float: left;">
+                      
+                      </div>
+              </div>
+        </div>
+        <div class="row">
+          <div class="column">
+              <div style="width: 25%;float: left;">
+                  <p>Phone Number</p></div>
+                  <div id="cust_number" style="width: 25%;float: left;">
+                  
+                  </div>
+          </div>
+    </div>
+    <div class="row">
+      <div class="column">
+          <div style="width: 25%;float: left;">
+              <p>E-mail Id</p></div>
+              <div id="cust_mail" style="width: 25%;float: left;">
+              
+              </div>
+      </div>
+</div>
+<div class="row">
+  <div class="column">
+      <div style="width: 25%;float: left;">
+          <p>Treats Credit</p></div>
+          <div id="cust_points" style="width: 25%;float: left;">
+          
+          </div>
+  </div>
+</div>
+        </div>    
+        
+      </div>
+      </div>
+
+    </div>
+  <div class="gifts-popup-footer">
+      
+    
+    
+    
+    <a href="{{ routes.cart_url }}"  id="back_cart">Back To Cart</a>
+    
+    <button type="button" id="only_apply_close">Continue To Checkout</button>
+     <button type="button" id="points_apply_close">Pay and Continue To Checkout</button>
+      <!-- Changes Start 20-08-20 --> 
+    <button type="button" id="only_apply"><div class="loader"></div> Apply</button>
+    <button type="button" id="close"><div class="loader"></div>Apply and Continue To Checkout</button>
+    <!-- Changes End 20-08-20 -->
+    
+     <button type="button" id="point_close"><div class="loader"></div>Continue To Checkout</button>
+    
+  </div>
+  
+</div>
+
+ <div id="gift_msg">Gift Successfully Applied</div>
+
+<div id="gift_err_msg">Selected Gifts not Redeemed</div>
+
+<div id="point_err_msg">Please Enter Valid Credits</div>
+
+<div id="select_gift_err_msg">Please Select a Gift</div>
+   
+            
+        <script>
+          
+          var shopify_cart = {};
+          {%- assign cartJson = cart | json -%}
+{%- assign cartToken = cartJson | split:'token":"' | last | split:'"' | first -%}
+shopify_cart["cart_token"] ='{{cartJson}}';
+shopify_cart["customer_id"] ='{{customer.id}}';
+shopify_cart["customer_name"] ='{{customer.name}}';
+console.log('customer');
+console.log('{{customer}}');
+shopify_cart["customer_phone"] ='{{customer.phone}}';
+shopify_cart["customer_email"] = '{{customer.email}}';
+shopify_cart["location_id"] = '8886';
+      
+      
+      //como register/login code starts
+      var como = {
+      zapp_root: "https://api.prod.como.com/",
+      services_root: "https://services.prod.como.com/",
+      app_modules_root: "https://appmodules-prod.como.com/",
+      react_url: "https://janua.como.com/",
+      token: null,
+      locationId: null,
+      locationName: '',
+      locationState: null,
+      installationId: null,
+      membership: null,
+      assets: null,
+      RegistrationUrl: '',
+      ProfileUrl: '',
+      LoginUrl: '',
+      version_no: 1
+      }
+      como.setLocationId = function (location_id) {
+      como.locationId = location_id;
+      }
+      como.getLocationId = function () {
+      return como.locationId;
+      }
+      como.setInstallationId = function (installationId) {
+      como.installationId = installationId;
+      }
+      como.getInstallationId = function () {
+      return como.installationId;
+      }
+      como.setToken = function (token) {
+
+//		localStorage.setItem("legacy_token_" + como.getLocationId()), token);
+
+      como.token = token;
+
+      console.log(como.token);
+      }
+      como.getToken = function () {
+      return como.token;
+      }
+      como.setRegistrationUrl = function () {
+
+      como.RegistrationUrl = como.app_modules_root + "register?locationid=" + como.getLocationId();
+
+      }
+      como.setProfileUrl = function () {
+      como.ProfileUrl = como.app_modules_root + "profile?token=" + como.getToken() + "&locationid=" + como.getLocationId();
+      }
+
+      como.setLoginUrl = function () {
+      como.LoginUrl = como.app_modules_root + "login?token=" + como.getToken() + "&locationid=" + como.getLocationId();
+      console.log('login url');
+      console.log(como.LoginUrl);
+      }
+
+      como.getRegistrationUrl = function () {
+      console.log(como.RegistrationUrl);
+      return como.RegistrationUrl;
+      }
+      como.getLoginUrl = function () {
+      console.log(como.getLoginUrl);
+      return como.LoginUrl;
+      }
+      como.init = function () {
+      var location_id = como.getLocationId();
+      var installation_id = como.getInstallationId();
+//		alert(location_id);
+//		alert(installation_id);
+
+      $.post(como.zapp_root + "alpha/api/SignOn?InputType=json&MimeType=application/json", {"DeviceID": installation_id, "InstallationID": installation_id}).then(function (signon_response) {
+          console.log('signon_response');
+          console.log(signon_response);
+          como.setToken(signon_response.Token);
+          como.setRegistrationUrl();
+          como.setProfileUrl();
+          como.setLoginUrl();
+
+          $("#login").attr("src", como.getLoginUrl());
+          $("#register").attr("src", como.getRegistrationUrl());
+//		    alert(como.getLoginUrl());
+//		    alert(como.getRegistrationUrl());
+
+      }).fail(function () {
+          console.log('error');
+
+      });
+      }
+      como.logout = function () {
+
+      $.post(como.zapp_root + 'alpha/api/DisconnectUserFromMembership?InputType=json&MimeType=application/json', {"LocationID": como.getLocationId(), "Token": como.getToken()}, function (response) {
+          console.log('logout done');
+          console.log(response);
+      }).fail(function () {
+          console.log('logout error');
+      });
+      }
+
+      var location_id = shopify_cart["location_id"];
+
+      como.setLocationId(location_id);
+//	    localStorage.removeItem("installation_id_" + como.getLocationId());
+      var installation_id = localStorage.getItem("installation_id_" + como.getLocationId());
+      if (installation_id === null) {
+      installation_id = Date.now() + Math.floor(Math.random() * 10000);
+      localStorage.setItem("installation_id_" + como.getLocationId(), installation_id);
+      }
+//	    alert(installation_id);
+      como.setInstallationId(installation_id);
+
+      //como register/login code ends
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer  %}
+
+            {% else %}
+              //window.location.replace("https://www.rubaiyatfashion.com/account/login?return_url=%2Fpages%2Fgifts-rewards");
+              <a href="/account/login?return_url=%2Fpages%2Fgifts-rewards" class=" btn btn--small-wide additional-checkout-buttons">Gifts And Rewards</a>
+            {% endif %}
+          {% endif %}
+
+          var points_applied = 0;
+
+          document.getElementById("mydiv1").style.display = 'none';
+          document.getElementById("mydiv2").style.display = 'none';
+          document.getElementById("mydiv3").style.display = 'none';
+          document.getElementById("points_apply_close").style.display = 'none';
+          document.getElementById("points_remove_button").style.display = 'none';
+
+          var receive_otp = document.getElementById("myotp");
+
+          var recieve_phone = document.getElementById("myphone");
+
+//            receive_otp.onclick = function(){
+//            console.log(recieve_phone.value);
+//              var cust_ph = {};
+//              cust_ph['phone_no'] = recieve_phone.value
+//              var ph_json = JSON.stringify(cust_ph);
+//              console.log(ph_json);
+////               shopify_cart['phone_no'] = recieve_phone.value;
+////               var shopi = JSON.stringify(shopify_cart);
+//              $.post( 'https://shopify.comosense.com/shopify/otp-confirmation/8770',
+//    			{
+//                  phone_no:ph_json
+//    			},
+//    			 function (data) {
+//                  console.log(data);
+//                if(data['status'] == 'ok')
+//                {
+//                  document.getElementById("mydiv1").style.display = 'none';
+//                  document.getElementById("mydiv2").style.display = 'block';
+//                }
+//                else
+//                {
+//                  alert("Please register on como first to access your gifts and rewards");
+//                }
+//    			}, "json").fail( function(jqXHR, textStatus, errorThrown) {
+//    			alert(textStatus);
+//				}
+//				);
+//            }
+
+          var verify_otp = document.getElementById("verify_me");
+
+          var verify_otp_input = document.getElementById("verify_otp");
+
+          var verify_customer = function(){
+          console.log('verifying como customer');
+          console.log(shopify_cart);
+//              shopify_cart['otp'] = verify_otp_input.value;
+             var shopi = JSON.stringify(shopify_cart);
+            console.log(shopi);
+            localStorage.setItem("shopi", shopi);
+            $.post( 'https://shopify.comosense.com/shopify/calculate-discount?callback=',
+              {
+                shopify_json:shopi
+              },
+              function (data) {
+                console.log(data);
+                if(data['status'] == 'ok'){
+
+        console.log(data);
+        shopify_cart["customer_name"] = data['membership']['firstName'] + ' ' + data['membership']['lastName'];
+        shopify_cart["customer_phone"] = data['membership']['phoneNumber'];
+        shopify_cart["customer_email"] = data['membership']['email'];
+        if(data['membership']['pointsBalance']['usedByPayment'])
+        {
+        shopify_cart["customer_points"] = data['membership']['pointsBalance']['balance']['monetary'];
+        }else{
+        if(data['membership']['creditBalance']['usedByPayment'])
+        {
+        shopify_cart["customer_points"] = data['membership']['creditBalance']['balance']['monetary'];
+        }else{
+          shopify_cart["customer_points"] = 0;
+        }
+        }
+
+        var my_cust_name = document.getElementById('cust_name');
+        var cust_name_line = document.createElement('p');
+        cust_name_line.innerHTML = shopify_cart["customer_name"];
+        my_cust_name.appendChild(cust_name_line);
+
+      var my_cust_number = document.getElementById('cust_number');
+      var cust_number_line = document.createElement('p');
+      cust_number_line.innerHTML = shopify_cart["customer_phone"];
+      my_cust_number.appendChild(cust_number_line);
+
+      var my_cust_mail = document.getElementById('cust_mail');
+      var cust_mail_line = document.createElement('p');
+      cust_mail_line.innerHTML = shopify_cart["customer_email"];
+      my_cust_mail.appendChild(cust_mail_line);
+          var my_cust_points = document.getElementById('cust_points');
+      var cust_points_line = document.createElement('p');
+      cust_points_line.innerHTML = "€" + (shopify_cart["customer_points"]/100).toFixed(2);
+      my_cust_points.appendChild(cust_points_line);
+           document.getElementById("show_loader").classList.remove('btn-apply');
+          document.getElementById("show_loader").style.display = 'none';
+          document.getElementById("hide_loader").style.display = 'block';
+           var ap_points = document.getElementById('sub_cust_points');
+                        ap_points.innerHTML = '';
+             var apu_points = document.createElement('p');
+
+             var apu_amount_to_pay = document.createElement('p');
+
+               apu_points.innerHTML = "Available Credit €" + (shopify_cart["customer_points"]/100).toFixed(2) ;
+
+
+              apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+
+               ap_points.appendChild(apu_points);
+
+               ap_points.appendChild(apu_amount_to_pay);
+            for (value in data['membership']['assets']) {
+              console.log(value);
+             var asset=data['membership']['assets'][value];
+              if(asset['status']=="Active")
+              {
+                if(asset['redeemable'] == true){
+               var active_gifts=document.getElementById('active_gifts');
+            var x=document.createElement('div');
+            var col=document.createElement('div');
+            col.className = 'column' ;
+            var sty=document.createElement('div');
+            sty.setAttribute("style", "width: 25%; float: left;");
+            var img=document.createElement('img');
+            img.src=asset["image"];
+            img.setAttribute=("float", "left");
+            sty.appendChild(img);
+            col.appendChild(sty);
+            var sty1=document.createElement('div');
+            sty1.setAttribute("style", "width: 25%; float: left;");
+                  var line0=document.createElement('p');
+            line0.innerHTML='<b>'+asset["name"]+'</b>';
+            sty1.appendChild(line0);
+            var line1=document.createElement('p');
+            line1.innerHTML=asset["description"];
+            sty1.appendChild(line1);
+            var line2=document.createElement('p');
+            line2.innerHTML='Valid from '+asset["validFrom"];
+            sty1.appendChild(line2);
+            var line3=document.createElement('p');
+            line3.innerHTML='Valid until '+asset["validUntil"];
+            sty1.appendChild(line3);
+            col.appendChild(sty1);
+            var but=document.createElement('div');
+            but.className='select';
+            var key=asset['key'];
+            but.id=asset['key'];
+            but.innerHTML='<button onclick="buttoncall(this)">Select</button>';
+            col.appendChild(but);
+            x.appendChild(col);
+            active_gifts.appendChild(x);   
+                }else{
+                var active_gifts=document.getElementById('active_gifts');
+            var x=document.createElement('div');
+            var col=document.createElement('div');
+            col.className = 'column' ;
+            var sty=document.createElement('div');
+            sty.setAttribute("style", "width: 25%; float: left;");
+            var img=document.createElement('img');
+            img.src=asset["image"];
+            img.setAttribute=("float", "left");
+            sty.appendChild(img);
+            col.appendChild(sty);
+            var sty1=document.createElement('div');
+            sty1.setAttribute("style", "width: 25%; float: left;");
+            var line0=document.createElement('p');
+            line0.innerHTML='<b>'+asset["name"]+'</b>';
+            sty1.appendChild(line0);
+            var line1=document.createElement('p');
+            line1.innerHTML=asset["description"];
+            sty1.appendChild(line1);
+            var line2=document.createElement('p');
+            line2.innerHTML='Valid from '+asset["validFrom"];
+            sty1.appendChild(line2);
+            var line3=document.createElement('p');
+            line3.innerHTML='Valid until '+asset["validUntil"];
+            sty1.appendChild(line3);
+            col.appendChild(sty1);
+            var but=document.createElement('div');
+            but.className='select';
+            var key=asset['key'];
+            but.id=asset['key'];
+            //but.innerHTML=asset['nonRedeemableCause']['message'];
+            col.appendChild(but);
+            x.appendChild(col);
+            active_gifts.appendChild(x);
+                }
+              }
+              else
+              {
+                var inactive_gifts=document.getElementById('inactive_gifts');
+            var x=document.createElement('div');
+            var col=document.createElement('div');
+            col.className = 'column' ;
+            var sty=document.createElement('div');
+            sty.setAttribute("style", "width: 25%; float: left;");
+            var img=document.createElement('img');
+            img.src=asset["image"];
+            img.setAttribute=("float", "left");
+            sty.appendChild(img);
+            col.appendChild(sty);
+            var sty1=document.createElement('div');
+            sty1.setAttribute("style", "width: 25%; float: left;");
+                var line0=document.createElement('p');
+            line0.innerHTML='<b>'+asset["name"]+'</b>';
+            sty1.appendChild(line0);
+            var line1=document.createElement('p');
+            line1.innerHTML=asset["description"];
+            sty1.appendChild(line1);
+            var line2=document.createElement('p');
+            line2.innerHTML='Valid from '+asset["validFrom"];
+            sty1.appendChild(line2);
+            var line3=document.createElement('p');
+            line3.innerHTML='Valid until '+asset["validUntil"];
+            sty1.appendChild(line3);
+            col.appendChild(sty1);
+            var but=document.createElement('div');
+            but.className='select';
+            var key=asset['key'];
+            but.id=asset['key'];
+            but.innerHTML='<button disabled [disabled]="true">Redeemed</button>';
+            col.appendChild(but);
+            x.appendChild(col);
+            inactive_gifts.appendChild(x);   
+              }
+      }
+                   document.getElementById("mydiv1").style.display = 'none';
+                  document.getElementById("mydiv2").style.display = 'none';
+                 document.getElementById("mydiv3").style.display = 'block';
+                }
+                
+              }, "json").fail( function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus);
+              }	
+              );
+          }
+          
+      window.addEventListener('message', function (event) {
+      console.log('event received');
+      console.log(event);
+
+      if ((event.data !== undefined) && (event.data.result !== undefined) && (event.data.result == "success") && (event.data.legacyToken !== undefined)) {
+          como.setToken(event.data.legacyToken);
+          $.post(como.zapp_root + "alpha/api/GetUserAtLocation?InputType=json&MimeType=application/json", {"LocationID": como.getLocationId(), "Token": como.getToken()}, function (membership_response) {
+          console.log('membership_response');
+          console.log(membership_response);
+          if((membership_response.Status != undefined) && (membership_response.Status == 'ok')){
+             if((membership_response.FirstName != undefined) && (membership_response.FirstName != '')){
+                 shopify_cart["customer_name"] = membership_response.FirstName;
+             }
+             if((membership_response.LastName != undefined) && (membership_response.LastName != '')){
+                 shopify_cart["customer_name"] = membership_response.LastName;
+             }
+             if((membership_response.Email != undefined) && (membership_response.Email != '')){
+                 shopify_cart["customer_email"] = membership_response.Email;
+             }
+             if((membership_response.PhoneNumber != undefined) && (membership_response.PhoneNumber != '')){
+                 shopify_cart["customer_phone"] = membership_response.PhoneNumber;
+             }
+             if((membership_response.CommonExtID != undefined) && (membership_response.CommonExtID != '')){
+                 shopify_cart["CommonExtID"] = membership_response.CommonExtID;
+             }
+              verify_customer();
+          }
+          como.logout();
+          localStorage.removeItem("installation_id_" + como.getLocationId())
+          }).fail(function () {
+          console.log('membership_response error');
+          });
+      } else if ((event.data !== undefined) && (event.data.result !== undefined) && (event.data.result == "success")) {
+          $.post(como.zapp_root + "alpha/api/GetUserAtLocation?InputType=json&MimeType=application/json", {"LocationID": como.getLocationId(), "Token": como.getToken()}, function (membership_response) {
+          console.log('membership_response');
+          console.log(membership_response);
+          
+          if((membership_response.Status != undefined) && (membership_response.Status == 'ok')){
+             if((membership_response.FirstName != undefined) && (membership_response.FirstName != '')){
+                 shopify_cart["customer_name"] = membership_response.FirstName;
+             }
+             if((membership_response.LastName != undefined) && (membership_response.LastName != '')){
+                 shopify_cart["customer_name"] = membership_response.LastName;
+             }
+             if((membership_response.Email != undefined) && (membership_response.Email != '')){
+                 shopify_cart["customer_email"] = membership_response.Email;
+             }
+             if((membership_response.PhoneNumber != undefined) && (membership_response.PhoneNumber != '')){
+                 shopify_cart["customer_phone"] = membership_response.PhoneNumber;
+             }
+             if((membership_response.CommonExtID != undefined) && (membership_response.CommonExtID != '')){
+                 shopify_cart["CommonExtID"] = membership_response.CommonExtID;
+             }
+              verify_customer();
+          }
+          como.logout();
+          localStorage.removeItem("installation_id_" + como.getLocationId())
+          }).fail(function () {
+          console.log('membership_response error');
+          });
+
+      }
+
+      }, false);
+      
+          var applied = 0;
+          
+          function ImpChangeMsg() {
+            document.getElementById('imp_changes_msg').style.display = 'block';
+            setTimeout(function(){
+              document.getElementById('imp_changes_msg').style.display = 'none';
+            }, 2000);}
+          
+          function selectGiftErrMsg() {
+            document.getElementById('select_gift_err_msg').style.display = 'block';
+            setTimeout(function(){
+              document.getElementById('select_gift_err_msg').style.display = 'none';
+            }, 2000);
+          }
+          
+          function showPointErrMsg() {
+            document.getElementById('point_err_msg').style.display = 'block';
+            setTimeout(function(){
+              document.getElementById('point_err_msg').style.display = 'none';
+            }, 2000);
+          }
+          
+          function showGiftErrMsg() {
+            document.getElementById('gift_err_msg').style.display = 'block';
+            setTimeout(function(){
+              document.getElementById('gift_err_msg').style.display = 'none';
+            }, 2000);
+          }
+          
+          function showGiftMsg() {
+            document.getElementById('gift_msg').style.display = 'block';
+            setTimeout(function(){
+              document.getElementById('gift_msg').style.display = 'none';
+            }, 2000);
+          }
+          
+          
+          document.getElementById("close").style.display = 'none';
+          document.getElementById("only_apply").style.display = 'none';
+          document.getElementById("point_close").style.display = 'none';
+           document.getElementById("only_apply_close").style.display = 'none';
+          
+          
+          document.getElementById("show_loader").style.display = 'block';
+           document.getElementById("show_loader").classList.add('btn-apply');
+          document.getElementById("hide_loader").style.display = 'none';
+          
+          
+          
+          document.getElementById("point_close").onclick = function(){
+            console.log(localStorage.getItem("discount_code"));
+            if (localStorage.getItem("discount_code") == '') {
+                  location.replace("https://www.rubaiyatfashion.com/checkout");
+            } else {
+              if(localStorage.getItem("discount_code") == 'undefined'){
+                location.replace("https://www.rubaiyatfashion.com/checkout");
+              } else {
+                location.replace("https://www.rubaiyatfashion.com/checkout?discount="+localStorage.getItem("discount_code"));
+              }
+            }
+
+          }
+
+          document.getElementById("only_apply_close").onclick = function(){
+          
+          if(localStorage.getItem("discount_code") == ''){
+                location.replace("https://www.rubaiyatfashion.com/checkout");
+              }
+              else{
+                location.replace("https://www.rubaiyatfashion.com/checkout?discount="+localStorage.getItem("discount_code"));
+              }
+            
+          }
+          
+          
+           localStorage.setItem("discount_code", '');
+          localStorage.setItem("gift_items", '');
+          localStorage.setItem("order_total", 0);
+          localStorage.setItem("discount_total", 0);
+          localStorage.setItem("shopi",[]);
+          
+          
+          
+          var redeem_input_points_button = document.getElementById("points_button");
+          
+          var redeem_input_points = document.getElementById("my_input_points");
+          
+          redeem_input_points_button.onclick = function(){
+            var element = $(this); /* Changes 28-02-20 */
+            element.addClass('btn-apply'); /* Changes 28-02-20 */
+            console.log(redeem_input_points.value);
+            console.log(shopify_cart["customer_points"]);
+            console.log(localStorage.getItem("gift_items"));
+            shopify_cart["gift_items"]= localStorage.getItem("gift_items");
+            var temp = parseFloat(localStorage.getItem("order_total"),10) + parseFloat(localStorage.getItem("discount_total"),10);
+            console.log(temp);
+            if(temp == 0){
+              console.log("hello");
+              //var temp_value = parseFloat({{cart.items_subtotal_price | money}});
+              var temp__cart_amount = '{{cart.items_subtotal_price | money}}'.replace(',', '');
+               var temp_value = temp__cart_amount.match(/-?\d+\.?\d*/).map(Number).join("");
+              console.log(temp_value);  
+              temp_value = parseFloat(temp_value);
+              console.log(temp_value);
+            }else{
+            var temp_value = temp;
+              console.log(temp_value);
+            }
+            
+            if(redeem_input_points.value > 0 && redeem_input_points.value < (shopify_cart["customer_points"]/100)
+              && {{ cart.item_count }} != 0 && redeem_input_points.value <= temp_value) {
+              //var shopify_cart = {};
+              shopify_cart['applied_points'] = redeem_input_points.value;
+              if(shopify_cart['gift_items'] == ''){
+                shopify_cart['discount_code_applied'] = '';
+              }
+              else{
+                shopify_cart['discount_code_applied'] = localStorage.getItem("discount_code");}
+              console.log(shopify_cart);
+              var my_shopi = JSON.stringify(shopify_cart);
+              console.log(my_shopi);
+              localStorage.setItem("shopi", my_shopi);
+            $.post( 'https://shopify.comosense.com/shopify/point-payment',
+               {
+                my_shopi:my_shopi
+              },
+               function (data) {
+                element.removeClass('btn-apply'); /* Changes 28-02-20 */
+              console.log(data);
+              points_applied = 1;
+              redeem_input_points.disabled = true;
+              redeem_input_points_button.style.display = 'none';
+              document.getElementById("points_apply_close").style.display = 'none';
+              document.getElementById("points_remove_button").style.display = 'inline-block';  
+              var discount_coupon_code = data['discount_code'];
+              localStorage.setItem("discount_code", data['discount_code']);
+              localStorage.setItem("order_total", data['order_total']);
+              localStorage.setItem("discount_total", data['discount_amount']);
+              console.log(discount_coupon_code);
+              var ap_points = document.getElementById('sub_cust_points');
+               ap_points.innerHTML = ''
+              var apu_points = document.createElement('p');
+              var apu_order_total=document.createElement('p');
+              var apu_discount_total = document.createElement('p');
+              var apu_amount_to_pay = document.createElement('p');
+                apu_amount_to_pay.innerHTML ='';
+                shopify_cart["customer_points"] = shopify_cart["customer_points"] - (redeem_input_points.value * 100);
+                console.log(shopify_cart["customer_points"]);
+                      if(shopify_cart["customer_points"] != 0)
+                  {
+                      apu_points.innerHTML = "Available Credit €" + (shopify_cart["customer_points"]/100).toFixed(2) ;
+
+                      if(-(localStorage.getItem("discount_total")) > 0){
+                      apu_order_total.innerHTML = "Order Total : €" + parseFloat(localStorage.getItem("order_total")).toFixed(2);
+                        var totalDisc = localStorage.getItem("discount_total").split("-");
+                        totalDisc[0] = "-€";
+                        var totalDiscount = totalDisc[0] + parseFloat(totalDisc[1]).toFixed(2);
+                      apu_discount_total.innerHTML = "Credit redeemed : " + totalDiscount;
+                        var apu_payable_amount = parseFloat(localStorage.getItem("order_total"),10) + parseFloat(localStorage.getItem("discount_total"),10);
+                       apu_amount_to_pay.innerHTML = "Order Payable : €" + apu_payable_amount.toFixed(2);
+                  }	else{
+
+                apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+              }
+
+            }else{
+              apu_points.innerHTML = "You don't have any points";
+              apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+            }
+              ap_points.appendChild(apu_points);
+              ap_points.appendChild(apu_order_total);
+              ap_points.appendChild(apu_discount_total);
+              ap_points.appendChild(apu_amount_to_pay);
+//                   if(discount_coupon_code == undefined){
+//                   location.replace("https://www.rubaiyatfashion.com/checkout");
+//                   }
+//                   else{
+// 				location.replace("https://www.rubaiyatfashion.com/checkout?discount="+discount_coupon_code);}
+              }, "json").fail( function(jqXHR, textStatus, errorThrown) {
+              alert(textStatus);
+}
+              );
+            
+            }else{
+              showPointErrMsg();
+            element.removeClass('btn-apply'); /* Changes 28-02-20 */
+            //alert("Please enter valid points");&& redeem_input_points.value < temp_value
+            }
+          }
+          
+          
+          document.getElementById("points_apply_close").onclick = function(){
+            var element = $(this); /* Changes 28-02-20 */
+            element.addClass('btn-apply'); /* Changes 28-02-20 */
+            console.log(redeem_input_points.value);
+            console.log(shopify_cart["customer_points"]);
+            console.log(localStorage.getItem("gift_items"));
+            var temp = parseFloat(localStorage.getItem("order_total"),10) + parseFloat(localStorage.getItem("discount_total"),10);
+            console.log(temp);
+            if(temp == 0){
+              console.log("hello");
+              //var temp_value = parseFloat({{cart.items_subtotal_price | money}});
+               var temp_value = '{{cart.items_subtotal_price | money}}'.match(/-?\d+\.?\d*/).map(Number).join("");
+              console.log(temp_value);  
+               temp_value = parseFloat(temp_value);
+            }else{
+            var temp_value = temp;
+              console.log(temp_value);
+            }
+            shopify_cart["gift_items"]= localStorage.getItem("gift_items");
+            if(redeem_input_points.value > 0 && 
+               redeem_input_points.value < (shopify_cart["customer_points"]/100)
+              && {{ cart.item_count }} != 0 && redeem_input_points.value <= temp_value){
+              //var shopify_cart = {};
+              shopify_cart['applied_points'] = redeem_input_points.value;
+              if(shopify_cart['gift_items'] == ''){
+                shopify_cart['discount_code_applied'] = '';
+              }
+              else{
+                shopify_cart['discount_code_applied'] = localStorage.getItem("discount_code");}
+              
+              if(localStorage.getItem("discount_code") == ''){
+                shopify_cart['discount_code_applied'] = '';
+              }
+              else{
+                shopify_cart['discount_code_applied'] = localStorage.getItem("discount_code");}
+              console.log(shopify_cart);
+              var my_shopi = JSON.stringify(shopify_cart);
+              console.log(my_shopi);
+              localStorage.setItem("shopi", my_shopi);
+            $.post( 'https://shopify.comosense.com/shopify/point-payment',
+              {
+                my_shopi:my_shopi
+              },
+               function (data) {
+                element.removeClass('btn-apply'); /* Changes 28-02-20 */
+              console.log(data);
+              var discount_coupon_code = data['discount_code'];
+              localStorage.setItem("discount_code", data['discount_code']);
+              console.log(discount_coupon_code);
+              location.replace("https://www.rubaiyatfashion.com/checkout?discount="+discount_coupon_code);
+              }, "json").fail( function(jqXHR, textStatus, errorThrown) {
+              alert(textStatus);
+              }
+              );
+            
+            }else{
+            showPointErrMsg();
+            element.removeClass('btn-apply');
+            //alert("Please enter valid points");
+            }
+          }
+          
+          
+          document.getElementById("points_remove_button").onclick = function(){
+              var element = $(this);
+               element.addClass('btn-apply');
+                shopify_cart['discount_code_applied'] = localStorage.getItem("discount_code");
+              var my_shopi = JSON.stringify(shopify_cart);
+              console.log(my_shopi);
+            localStorage.setItem("shopi", my_shopi);
+            $.post('https://shopify.comosense.com/shopify/point-payment-remove',
+              {
+                my_shopi:my_shopi
+              },
+              function (data) {
+                //element.removeClass('btn-apply'); /* Changes 28-02-20 */
+              console.log(data);
+                if(data['status'] == 'ok'){
+                   points_applied = 0;
+                   localStorage.setItem("discount_total",0);
+                   localStorage.setItem("order_total",data['order_total']);
+                  redeem_input_points.disabled = false;
+                  if(shopify_cart['gift_items'].length != 0){
+                      
+                    shopify_cart['gift_items'] = selected_gifts_key;
+                    shopify_cart['discount_code_applied'] = '';
+                    shopify_cart['applied_points'] = 0;
+                    shopify_cart["customer_points"] = shopify_cart["customer_points"] + (redeem_input_points.value * 100);
+                    var shopi=JSON.stringify(shopify_cart);
+                    console.log(shopi);
+                     $.post('https://shopify.comosense.com/shopify/apply-gifts',
+                      {
+                        shopi:shopi
+                      },
+                     function (data) {
+                      console.log(data);
+                        element.removeClass('btn-apply'); /* Changes 28-02-20 */
+                        //alert('Gift successfully applied');
+                        if(data == 0){
+                          //alert('Please select a gift');
+                           selectGiftErrMsg();
+                        }else{
+                          applied = 1;
+                          //showGiftMsg();
+                      var discount_coupon_code = data['discount_code'];
+                      console.log(discount_coupon_code);
+                      localStorage.setItem("order_total", data['order_total']);
+                      localStorage.setItem("discount_total", data['discount_amount']);
+                        localStorage.setItem("discount_code", data['discount_code']);
+                        console.log(localStorage.getItem("discount_total"));
+                        console.log(localStorage.getItem("order_total"));
+                        var ap_points = document.getElementById('sub_cust_points');
+                          ap_points.innerHTML = ''
+                        var apu_points = document.createElement('p');
+                        var apu_order_total=document.createElement('p');
+                        var apu_discount_total = document.createElement('p');
+                        var apu_amount_to_pay = document.createElement('p');
+                        apu_amount_to_pay.innerHTML ='';
+                        console.log(shopify_cart["customer_points"]);
+                      if(shopify_cart["customer_points"] != 0)
+                          {
+                              apu_points.innerHTML = "Available Credit €" + (shopify_cart["customer_points"]/100).toFixed(2) ;
+
+                              if(-(localStorage.getItem("discount_total")) > 0){
+                              apu_order_total.innerHTML = "Order Total : €" + parseFloat(localStorage.getItem("order_total")).toFixed(2);
+                              apu_discount_total.innerHTML = "Discount Applied : " + localStorage.getItem("discount_total");
+                                var apu_payable_amount = parseFloat(localStorage.getItem("order_total"),10) + parseFloat(localStorage.getItem("discount_total"),10);
+                               apu_amount_to_pay.innerHTML = "Order Payable : €" + apu_payable_amount.toFixed(2);
+                          }	else{
+
+                        apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+                      }
+
+                    }else{
+                      apu_points.innerHTML = "You don't have any points";
+                      apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+                    }
+                      ap_points.appendChild(apu_points);
+                      ap_points.appendChild(apu_order_total);
+                      ap_points.appendChild(apu_discount_total);
+                      ap_points.appendChild(apu_amount_to_pay);
+                          
+                      element.removeClass('btn-apply');
+                      redeem_input_points_button.style.display = 'inline-block';
+                      document.getElementById("points_apply_close").style.display = 'block';
+                      document.getElementById("points_remove_button").style.display = 'none';
+
+                        }}, "json").fail( function(jqXHR, textStatus, errorThrown) {
+              alert(textStatus);
+                  }
+                      );
+                  }else{
+                      element.removeClass('btn-apply');
+                      localStorage.setItem("discount_code", '');
+                      shopify_cart['discount_code_applied'] = '';
+                      redeem_input_points_button.style.display = 'inline-block';
+                      document.getElementById("points_apply_close").style.display = 'block';
+                      document.getElementById("points_remove_button").style.display = 'none';
+                        var ap_points = document.getElementById('sub_cust_points');
+                       ap_points.innerHTML = ''
+                      var apu_points = document.createElement('p');
+                      var apu_order_total=document.createElement('p');
+                      var apu_discount_total = document.createElement('p');
+                      var apu_amount_to_pay = document.createElement('p');
+                        apu_amount_to_pay.innerHTML ='';
+                        shopify_cart["customer_points"] = shopify_cart["customer_points"] + (redeem_input_points.value * 100);
+                        console.log(shopify_cart["customer_points"]);
+                              if(shopify_cart["customer_points"] != 0)
+                          {
+                              apu_points.innerHTML = "Available Credit €" + (shopify_cart["customer_points"]/100).toFixed(2) ;
+
+                              if(-(localStorage.getItem("discount_total")) > 0){
+                              apu_order_total.innerHTML = "Order Total : €" + parseFloat(localStorage.getItem("order_total")).toFixed(2);
+                              apu_discount_total.innerHTML = "Discount Applied : " + localStorage.getItem("discount_total");
+                                var apu_payable_amount = parseFloat(localStorage.getItem("order_total"),10) + parseFloat(localStorage.getItem("discount_total"),10);
+                               apu_amount_to_pay.innerHTML = "Order Payable : €" + apu_payable_amount.toFixed(2);
+                          }	else{
+
+                        apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+                      }
+
+                    }else{
+                      apu_points.innerHTML = "You don't have any points";
+                      apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+                    }
+                      ap_points.appendChild(apu_points);
+                      ap_points.appendChild(apu_order_total);
+                      ap_points.appendChild(apu_discount_total);
+                      ap_points.appendChild(apu_amount_to_pay)
+                  }
+                }
+              }, "json").fail( function(jqXHR, textStatus, errorThrown) {
+              alert(textStatus);
+              }
+              );
+            }
+          
+          var selected_gifts_key = [];
+          
+var primaryTabs = $(".primary-tabs-row li");
+var secondaryTabs = $(".secondary-tabs-row li");
+
+var primaryTabsContent = $(".primary-tabs-row+.tab-content>.tab-pane");
+var secondaryTabsContent = $(".secondary-tabs-row+.tab-content>.tab-pane");
+
+function primaryTabsRemoveClass() {
+  primaryTabs.each( function(key, element){
+      element.classList.remove('active');
+  });
+  primaryTabsContent.each( function(key, element) {
+      element.classList.remove("active");
+      element.classList.remove("in");
+  });
+}
+
+function secondaryTabsRemoveClass() {
+  secondaryTabs.each( function(key, element){
+      element.classList.remove('active');
+  });
+  secondaryTabsContent.each( function(key, element) {
+      element.classList.remove("active");
+      element.classList.remove("in");
+  });
+}
+primaryTabs.each( function(key, element) {
+console.log(key,element);
+  $(this).click( function () {
+      primaryTabsRemoveClass()
+      $(this).addClass('active');
+      var id = $(this).children();
+      id = id[0].attributes['href'].value;
+    console.log(id);
+     window.scrollTo(0,0);
+    if(selected_gifts_key.length != 0 && applied == 0){
+        showGiftErrMsg();
+    }
+    document.getElementById("close").style.display = 'none';
+    document.getElementById("only_apply").style.display = 'none';
+    document.getElementById("point_close").style.display = 'none';
+    document.getElementById("only_apply_close").style.display = 'none';
+    document.getElementById("points_apply_close").style.display = 'none';
+    if(id == '#my_gifts'){
+           if(localStorage.getItem("discount_code") == ''){
+        document.getElementById("close").style.display = 'block';
+      }
+      else{
+        //document.getElementById("only_apply_close").style.display = 'block';
+        if(points_applied == 1){
+          if(applied == 1){
+            document.getElementById("only_apply_close").style.display = 'block';
+            document.getElementById("close").style.display = 'none';
+          }else{
+          document.getElementById("only_apply_close").style.display = 'none';
+            document.getElementById("close").style.display = 'block';
+          }
+        }else{
+        document.getElementById("only_apply_close").style.display = 'block';
+            }
+        }
+          document.getElementById("only_apply").style.display = 'none';
+    }
+    if(id == '#point_payment'){
+        document.getElementById("point_close").style.display = 'block';
+      if(points_applied == 1){
+      document.getElementById("points_apply_close").style.display = 'none';
+      }else{
+        document.getElementById("points_apply_close").style.display = 'block';}
+    }
+      $(id).addClass("active").addClass("in");
+  });
+});
+
+secondaryTabs.each( function(key, element) {
+  $(this).click( function () {
+      secondaryTabsRemoveClass()
+      $(this).addClass('active');
+      var id = $(this).children();
+      id = id[0].attributes['href'].value;
+      $(id).addClass("active").addClass("in");
+  });
+});
+ console.log('asfasf');
+//             document.getElementById('div1').style.display = 'block';
+//             document.getElementById('div2').style.display = 'none';
+          //document.getElementById('div3').style.display = 'block';
+          var user_click_submit = true;
+          var div_click_submit = false;
+          var overrided_submit_button =  document.getElementById("custom_checkout_button");
+          function custom_checkout_handle(ev){
+            if(user_click_submit){
+                ev.preventDefault();
+              
+              
+//                 $.ajax({
+//     			url: 'https://test1.onlineorderalert.com/api/profile',
+//     			type: 'post',
+//     			data: {
+//         			"profile_id" : "16575" , "api_key": "123456" , "location_id" : "16579"
+//     			},
+//     			headers: {
+//         		"Accept": "application/json, text/plain, */*",
+//             	"Accept-Language": "en-US,en;q=0.9",
+//             	"Content-Type": "text/plain"  //for object property name, use quoted notation shown in second
+//     			},
+//     			dataType: 'json',
+//     			success: function (data) {
+//         		console.info(data);
+//     			}
+// 				});
+                 //modal.style.display = "block";
+            }
+          }
+          
+          
+          // Get the modal
+// var modal = document.getElementById("myModal");
+//             modal.style.display = "block";
+          
+
+// Get the button that opens the modal
+//var btn = document.getElementById("myBtn");
+          
+          //btn.onclick = function() {
+//               alert('you clicked me');
+//modal.style.display = "block";
+//               alert('model should be there');
+
+          
+          var btn1 = document.getElementById("myotp");
+          
+//var close_button = document.getElementsByClassName("close")[0];
+          
+          var close_button = document.getElementById("close");
+          
+// var otp_button = document.getElementById("myotp");
+          
+//             otp_button.onclick = function(){
+//               document.getElementById('div1').style.display = 'none';
+//                 document.getElementById('div2').style.display = 'block';
+//             }
+          
+// var verify_button = document.getElementById("verify_me");
+          
+//             verify_button.onclick = function(){
+//               document.getElementById('div2').style.display = 'none';
+//                 document.getElementById('div3').style.display = 'block';
+//             }
+          
+          
+                   
+          close_button.onclick = function() {
+//modal.style.display = "none";
+            //user_click_submit = false;
+            //overrided_submit_button.click();
+            var element = $(this); /* Changes 28-02-20 */
+            element.addClass('btn-apply'); /* Changes 28-02-20 */
+            shopify_cart["gift_items"]= selected_gifts_key;
+            localStorage.setItem("gift_items", selected_gifts_key);
+            if(localStorage.getItem("discount_code") == ''){
+                shopify_cart['discount_code_applied'] = '';
+              }
+              else{
+                shopify_cart['discount_code_applied'] = localStorage.getItem("discount_code");}
+            var shopi=JSON.stringify(shopify_cart);
+//               var my_shopify_array = [];
+//               my_shopify_array.push(shopify_json);
+//               my_shopify_array.push(shopify_gifts_json);
+//               var shopi = JSON.stringify(my_shopify_array)
+//               console.log(my_shopify_array);
+            console.log(selected_gifts_key);
+            console.log(shopify_cart);
+            console.log(shopi);
+            localStorage.setItem("shopi", shopi);
+             $.post('https://shopify.comosense.com/shopify/apply-gifts',
+              {
+                shopi:shopi
+              },
+              function (data) {
+                element.removeClass('btn-apply'); /* Changes 28-02-20 */
+              console.log(data);
+              var discount_coupon_code = data['discount_code'];
+              if(discount_coupon_code == undefined){
+                  location.replace("https://www.rubaiyatfashion.com/checkout");
+                }else{
+               location.replace("https://www.rubaiyatfashion.com/checkout?discount="+discount_coupon_code);
+                }
+              }, "json").fail( function(jqXHR, textStatus, errorThrown) {
+              alert(textStatus);
+              }
+              );
+            document.getElementById('div3').style.display = 'block';
+             }
+          
+          
+          
+          
+document.getElementById('only_apply').onclick = function() {
+//modal.style.display = "none";
+            //user_click_submit = false;
+            //overrided_submit_button.click();
+              var element = $(this); /* Changes 28-02-20 */
+            element.addClass('btn-apply'); /* Changes 28-02-20 */
+            shopify_cart["gift_items"]= selected_gifts_key;
+            localStorage.setItem("gift_items", selected_gifts_key);
+              if(localStorage.getItem("discount_code") == ''){
+                shopify_cart['discount_code_applied'] = '';
+              }
+              else{
+                shopify_cart['discount_code_applied'] = localStorage.getItem("discount_code");}
+            var shopi=JSON.stringify(shopify_cart);
+            console.log(shopi);
+              localStorage.setItem("shopi", shopi);
+   if(selected_gifts_key.length != 0){
+             $.post('https://shopify.comosense.com/shopify/apply-gifts',
+              {
+                shopi:shopi
+              },
+              function (data) {
+              console.log(data);
+                element.removeClass('btn-apply'); /* Changes 28-02-20 */
+                if(data == 0){
+                  //alert('Please select a gift');
+                  selectGiftErrMsg();
+                    
+                }else{
+                  //alert('Gift successfully applied');
+                  applied = 1;
+                  showGiftMsg();
+                  document.getElementById('only_apply').disabled = true;
+                  document.getElementById('only_apply').style.background = 'grey';
+                  document.getElementById('only_apply').style.borderColor = 'grey';
+                  document.getElementById("close").style.display = 'none';
+                  document.getElementById("only_apply_close").style.display = 'block';
+                
+              var discount_coupon_code = data['discount_code'];
+              console.log(discount_coupon_code);
+              localStorage.setItem("order_total", data['order_total']);
+              localStorage.setItem("discount_total", data['discount_amount']);
+                  if(-(localStorage.getItem('discount_total')) > data['order_total']){
+                     localStorage.setItem("discount_total", -(data['order_total']));
+                     }
+                localStorage.setItem("discount_code", data['discount_code']);
+                console.log(localStorage.getItem("discount_total"));
+                console.log(localStorage.getItem("order_total"));
+                var ap_points = document.getElementById('sub_cust_points');
+                  ap_points.innerHTML = '';
+              var apu_points = document.createElement('p');
+              var apu_order_total=document.createElement('p');
+              var apu_discount_total = document.createElement('p');
+              var apu_amount_to_pay = document.createElement('p');
+                apu_amount_to_pay.innerHTML ='';
+                console.log(shopify_cart["customer_points"]);
+              if(shopify_cart["customer_points"] != 0)
+                {
+                    apu_points.innerHTML = "Available Credit €" + (shopify_cart["customer_points"]/100).toFixed(2) ;
+
+                    if(-(localStorage.getItem("discount_total")) > 0){
+                    apu_order_total.innerHTML = "Order Total : €" + parseFloat(localStorage.getItem("order_total")).toFixed(2);
+                    apu_discount_total.innerHTML = "Discount Applied : " + localStorage.getItem("discount_total");
+                      var apu_payable_amount = parseFloat(localStorage.getItem("order_total"),10) + parseFloat(localStorage.getItem("discount_total"),10);
+                     apu_amount_to_pay.innerHTML = "Order Payable : €" + apu_payable_amount.toFixed(2);
+                }	else{
+
+              apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+            }
+
+          }else{
+            apu_points.innerHTML = "You don't have any points";
+            apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+          }
+            ap_points.appendChild(apu_points);
+            ap_points.appendChild(apu_order_total);
+            ap_points.appendChild(apu_discount_total);
+            ap_points.appendChild(apu_amount_to_pay);
+              }}, "json").fail( function(jqXHR, textStatus, errorThrown) {
+              alert(textStatus);
+}
+             );
+   }else{
+   element.removeClass('btn-apply');
+     selectGiftErrMsg();
+   }
+}
+          
+          
+var cart_items= {};
+          
+//   var my_cust_name = document.getElementById('cust_name');
+//   var cust_name_line = document.createElement('p');
+//   cust_name_line.innerHTML = shopify_cart["customer_name"];
+//   my_cust_name.appendChild(cust_name_line);
+          
+//   var my_cust_number = document.getElementById('cust_number');
+//   var cust_number_line = document.createElement('p');
+//   cust_number_line.innerHTML = shopify_cart["customer_phone"];
+//   my_cust_number.appendChild(cust_number_line);
+         
+//   var my_cust_mail = document.getElementById('cust_mail');
+//   var cust_mail_line = document.createElement('p');
+//   cust_mail_line.innerHTML = shopify_cart["customer_email"];
+//   my_cust_mail.appendChild(cust_mail_line);
+          
+var x=0;
+var is_verified = 0;
+{% for product in cart.items %}
+var item={};
+item["product_title"] = '{{product.title}}';
+item["product_type"] = '{{product.type}}';
+item["product_id"] = '{{product.product_id}}';
+item["product_variant_id"] = '{{product.variant_id}}';
+item["product_price"] = '{{product.final_price}}'/100;
+item["product_quantity"] = '{{product.quantity}}';
+cart_items[x]=item;
+x++;            
+{% endfor %}
+shopify_cart["cart_items"]=cart_items;
+var shopify_json=JSON.stringify(shopify_cart);
+var a='{{cart.items}}';
+console.log(shopify_cart);
+var code = '';
+localStorage.setItem("shopi", shopify_json);
+$.post("https://shopify.comosense.com/shopify/calculate-discount?callback=",
+  {shopify_json:shopify_json},
+  function(data){ 
+    console.log(data);
+    if(data['is_verified'] == 'yes'){
+    is_verified = 1;
+      console.log('hello');
+      document.getElementById("show_initial_page_loader").style.display = 'none';
+      document.getElementById("mydiv1").style.display = 'none';
+      document.getElementById("mydiv2").style.display = 'none';
+      document.getElementById("mydiv3").style.display = 'block';
+    }else{
+    console.log('member not connected yet');
+    document.getElementById("show_initial_page_loader").style.display = 'none';
+    document.getElementById("mydiv1").style.display = 'block';
+    document.getElementById("mydiv2").style.display = 'none';
+    document.getElementById("mydiv3").style.display = 'none';
+     como.init();
+    }
+    if(data['is_verified'] == 'yes'){
+    shopify_cart["customer_name"] = data['membership']['firstName'] + ' ' + data['membership']['lastName'];
+    shopify_cart["customer_phone"] = data['membership']['phoneNumber'];
+    shopify_cart["customer_email"] = data['membership']['email'];
+    if(data['membership']['pointsBalance']['usedByPayment'])
+    {
+    shopify_cart["customer_points"] = data['membership']['pointsBalance']['balance']['monetary'];
+    }else{
+    if(data['membership']['creditBalance']['usedByPayment'])
+    {
+    shopify_cart["customer_points"] = data['membership']['creditBalance']['balance']['monetary'];
+    }else{
+        shopify_cart["customer_points"] = 0;
+    }
+    }
+    
+    var my_cust_name = document.getElementById('cust_name');
+var cust_name_line = document.createElement('p');
+cust_name_line.innerHTML = shopify_cart["customer_name"];
+my_cust_name.appendChild(cust_name_line);
+          
+var my_cust_number = document.getElementById('cust_number');
+var cust_number_line = document.createElement('p');
+cust_number_line.innerHTML = shopify_cart["customer_phone"];
+my_cust_number.appendChild(cust_number_line);
+         
+var my_cust_mail = document.getElementById('cust_mail');
+var cust_mail_line = document.createElement('p');
+cust_mail_line.innerHTML = shopify_cart["customer_email"];
+my_cust_mail.appendChild(cust_mail_line);
+    var my_cust_points = document.getElementById('cust_points');
+var cust_points_line = document.createElement('p');
+cust_points_line.innerHTML = "€" + (shopify_cart["customer_points"]/100).toFixed(2);
+my_cust_points.appendChild(cust_points_line);
+    
+    
+    document.getElementById("show_loader").classList.remove('btn-apply');
+    document.getElementById("show_loader").style.display = 'none';
+    document.getElementById("hide_loader").style.display = 'block';
+     var ap_points = document.getElementById('sub_cust_points');
+       ap_points.innerHTML = '';
+     var apu_points = document.createElement('p');
+//       var apu_order_total=document.createElement('p');
+//       var apu_discount_total = document.createElement('p');
+     var apu_amount_to_pay = document.createElement('p');
+//       if(shopify_cart["customer_points"] != 0)
+//       {
+       apu_points.innerHTML = "Available Credit €" + (shopify_cart["customer_points"]/100).toFixed(2) ;
+//         if(localStorage.getItem("discount_total") > 0){
+//           apu_order_total.innerHTML = "Order Total : " + localStorage.getItem("order_total");
+//           apu_discount_total.innerHTML = "Discount Applied : " + localStorage.getItem("discount_total");
+//           apu_amount_to_pay.innerHTML = "Order Payable : " + (localStorage.getItem("order_total") + localStorage.getItem("discount_total"));
+//         }else{
+        
+//           apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+//         }
+      
+//       }else{
+//       	apu_points.innerHTML = "You don't have any points";
+       apu_amount_to_pay.innerHTML = "Order Payable : " + '{{ cart.items_subtotal_price | money }}';
+//       }
+       ap_points.appendChild(apu_points);
+//       	ap_points.appendChild(apu_order_total);
+//         ap_points.appendChild(apu_discount_total);
+       ap_points.appendChild(apu_amount_to_pay);
+    
+    for (value in data['membership']['assets']) {
+      console.log(value);
+     var asset=data['membership']['assets'][value];
+      if(asset['status']=="Active")
+      {
+        if(asset['redeemable'] == true){
+       var active_gifts=document.getElementById('active_gifts');
+    var x=document.createElement('div');
+    var col=document.createElement('div');
+    col.className = 'column' ;
+    var sty=document.createElement('div');
+    sty.setAttribute("style", "width: 25%; float: left;");
+    var img=document.createElement('img');
+    img.src=asset["image"];
+    img.setAttribute=("float", "left");
+    sty.appendChild(img);
+    col.appendChild(sty);
+    var sty1=document.createElement('div');
+    sty1.setAttribute("style", "width: 25%; float: left;");
+          var line0=document.createElement('p');
+            line0.innerHTML='<b>'+asset["name"]+'</b>';
+            sty1.appendChild(line0);
+    var line1=document.createElement('p');
+    line1.innerHTML=asset["description"];
+    sty1.appendChild(line1);
+    var line2=document.createElement('p');
+    line2.innerHTML='Valid from '+asset["validFrom"];
+    sty1.appendChild(line2);
+    var line3=document.createElement('p');
+    line3.innerHTML='Valid until '+asset["validUntil"];
+    sty1.appendChild(line3);
+    col.appendChild(sty1);
+    var but=document.createElement('div');
+    but.className='select';
+    var key=asset['key'];
+    but.id=asset['key'];
+    but.innerHTML='<button onclick="buttoncall(this)">Select</button>';
+    col.appendChild(but);
+    x.appendChild(col);
+    active_gifts.appendChild(x);   
+        }else{
+        var active_gifts=document.getElementById('active_gifts');
+    var x=document.createElement('div');
+    var col=document.createElement('div');
+    col.className = 'column' ;
+    var sty=document.createElement('div');
+    sty.setAttribute("style", "width: 25%; float: left;");
+    var img=document.createElement('img');
+    img.src=asset["image"];
+    img.setAttribute=("float", "left");
+    sty.appendChild(img);
+    col.appendChild(sty);
+    var sty1=document.createElement('div');
+    sty1.setAttribute("style", "width: 25%; float: left;");
+          var line0=document.createElement('p');
+            line0.innerHTML='<b>'+asset["name"]+'</b>';
+            sty1.appendChild(line0);
+    var line1=document.createElement('p');
+    line1.innerHTML=asset["description"];
+    sty1.appendChild(line1);
+    var line2=document.createElement('p');
+    line2.innerHTML='Valid from '+asset["validFrom"];
+    sty1.appendChild(line2);
+    var line3=document.createElement('p');
+    line3.innerHTML='Valid until '+asset["validUntil"];
+    sty1.appendChild(line3);
+    col.appendChild(sty1);
+    var but=document.createElement('div');
+    but.className='select';
+    var key=asset['key'];
+    but.id=asset['key'];
+    but.innerHTML=asset['nonRedeemableCause']['message'];
+    col.appendChild(but);
+    x.appendChild(col);
+    active_gifts.appendChild(x);
+        }
+      }
+      else
+      {
+        var inactive_gifts=document.getElementById('inactive_gifts');
+    var x=document.createElement('div');
+    var col=document.createElement('div');
+    col.className = 'column' ;
+    var sty=document.createElement('div');
+    sty.setAttribute("style", "width: 25%; float: left;");
+    var img=document.createElement('img');
+    img.src=asset["image"];
+    img.setAttribute=("float", "left");
+    sty.appendChild(img);
+    col.appendChild(sty);
+    var sty1=document.createElement('div');
+    sty1.setAttribute("style", "width: 25%; float: left;");
+        var line0=document.createElement('p');
+            line0.innerHTML='<b>'+asset["name"]+'</b>';
+            sty1.appendChild(line0);
+    var line1=document.createElement('p');
+    line1.innerHTML=asset["description"];
+    sty1.appendChild(line1);
+    var line2=document.createElement('p');
+    line2.innerHTML='Valid from '+asset["validFrom"];
+    sty1.appendChild(line2);
+    var line3=document.createElement('p');
+    line3.innerHTML='Valid until '+asset["validUntil"];
+    sty1.appendChild(line3);
+    col.appendChild(sty1);
+    var but=document.createElement('div');
+    but.className='select';
+    var key=asset['key'];
+    but.id=asset['key'];
+    but.innerHTML='<button disabled [disabled]="true">Redeemed</button>';
+    col.appendChild(but);
+    x.appendChild(col);
+    inactive_gifts.appendChild(x);   
+      }
+}
+    
+}
+         },"json").fail( function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus);
+}
+         );
+         
+          
+          var selected_gifts_copy = []; 
+            
+            
+    function buttoncall(item){
+      
+      if(applied == 1){
+        
+       selected_gifts_copy = selected_gifts_key;
+        
+      }
+      
+      var flag = 0;
+      console.log(item);
+    var parent = item.parentNode;
+      var listItem = item.parentNode.parentElement;
+      
+      if(selected_gifts_key.length == 0){
+        parent.innerHTML='<button onclick="buttoncall(this)">Remove</button>';
+        selected_gifts_key.push(parent.id);
+      }else{
+        for(let i=0 ; i<selected_gifts_key.length ; i++){
+          if(parent.id == selected_gifts_key[i]){
+            selected_gifts_key.splice(i,1);
+            flag = 1;
+          }
+      }
+        
+        if(flag == 1){
+              parent.innerHTML='<button onclick="buttoncall(this)">Select</button>'; 
+          console.log(selected_gifts_key);
+        }else{
+          parent.innerHTML='<button onclick="buttoncall(this)">Remove</button>';
+          selected_gifts_key.push(parent.id);
+          console.log(selected_gifts_key);
+        }
+//         selected_gifts_key.push(parent.id);
+//         parent.innerHTML='<button onclick="buttoncall(this)">DeSelect</button>';
+      
+      }    
+      
+      if(selected_gifts_key.length == selected_gifts_copy.length){
+        
+        document.getElementById('only_apply').disabled = false;;
+        document.getElementById('only_apply').style.background = '#cf171f';
+        document.getElementById('only_apply').style.borderColor = '#cf171f';
+        document.getElementById("close").style.display = 'block';
+        document.getElementById("only_apply_close").style.display = 'none';
+        applied = 0;
+        ImpChangeMsg();
+      }
+    }  
+             
+          
+            </script>

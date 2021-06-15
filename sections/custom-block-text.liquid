@@ -1,0 +1,113 @@
+<div class="custom-width">
+  <div class="main__imageText">
+    <div class="main__imageText--content">
+      {% if section.settings.title != blank %}
+      <h2 class="content__title">
+        {{ section.settings.title }}
+      </h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+      <div class="content__text">
+        {{ section.settings.text }}
+      </div>
+      {% endif %}
+
+      <div class="content__gr">
+        {% if section.settings.text-gr != blank %}
+        <h2>{{ section.settings.text-gr }}</h2>
+        {% endif %}
+        <div class="gr__image">
+          <a href="https://play.google.com/store/apps/details?id=com.como.prod838020191112" target="_blank">
+            <img class="image--ggplay" src="{{ 'googleplay.png' | asset_url }}" />
+          </a>
+          <a href="https://apps.apple.com/us/app/ruba-rewards/id1498607496" target="_blank">
+            <img class="image--appstore" src="{{ 'appstore.png' | asset_url }}" />
+          </a>
+        </div>
+      </div>
+      {% if section.settings.text-bottom != blank %}
+      <h2 class="h2-note">{{ section.settings.text-bottom }}</h2>
+      {% endif %}
+      {% if section.blocks.size > 0 %}
+      <ul>
+        {% for block in section.blocks %}
+        <li>
+          {% if block.settings.title != blank %}
+          <h2 class="content__item--title">
+            {{ block.settings.title }}
+          </h2>
+          {% endif %}
+          {% if block.settings.text != blank %}
+          <div class="content__item--text">
+            {{ block.settings.text }}
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Custom Block Text",
+    "settings": [
+      {
+        "type" : "text",
+        "id" : "title",
+        "label" : "Heading",
+        "default" : "HOW TO JOIN "
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "Sub Heading",
+        "default" : "The Ruba Rewards App "
+      },
+      {
+        "type" : "richtext",
+        "id" : "text",
+        "label" : "Sub Text"
+      },
+	  {
+        "type" : "text",
+        "id" : "text-gr",
+        "label" : "Text Download",
+        "default" : "Download Now"
+      },
+      {
+        "type" : "text",
+        "id" : "text-bottom",
+        "label" : "Text Bottom",
+        "default" : "What the Ruba App delivers for you "
+      }
+    ],
+    "blocks" : [
+      {
+        "type": "text",
+        "name": "Item",
+        "settings":[
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Heading",
+            "default" : "JOIN NOW"
+          },
+          {
+            "type" : "richtext",
+            "id" : "text",
+            "label" : "Sub Heading"
+          }
+		]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

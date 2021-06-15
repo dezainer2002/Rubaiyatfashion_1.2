@@ -1,0 +1,88 @@
+{% comment %}
+
+  MailChimp is the go-to newsletter service for Shopify.
+  Use the link below to find your MailChimp "form action"
+  and insert it in your site settings.
+
+  MailChimp newsletter integration and requirement:
+   - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
+
+{% endcomment %}
+{%- capture newsletter_form_action -%}/contact{%- endcapture -%}
+{%- capture newsletter_form -%}
+
+{%- form 'customer', action: newsletter_form_action, class: 'input-group' -%}
+{% if form.posted_successfully? %}
+{% if newsletter-form == 'password' %}
+  <p class="password-newsletter-success">{{message}}</p>
+{% else %}
+  <script>
+    $(document).ready(function(){
+      var newsletterSuccessPopup = (function(){
+        
+            var popup = $('.newsletter-success-modal');
+            var close = popup.find('.close');
+        	var success = popup.find('.success');
+        	var error = popup.find('.error');
+            var overlay = popup.find('.modal-overlay');
+            popup.show();
+        	error.hide();
+        	success.show();
+            $.cookie('emailSubcribeModal', 'closed', {
+                expires: 1,
+                path: '/'
+            });
+            close.off('click').on('click',function(){
+                popup.fadeOut();
+            });
+            overlay.off('click').on('click',function(){
+                popup.fadeOut();
+            });
+        })();
+      	var newURL = location.href.split("?")[0];
+        window.history.pushState('object', document.title, newURL);
+    })
+  </script>
+{% endif %}
+{% else %}
+<script>
+  $(document).ready(function(){
+    if (window.location.href.indexOf('newsletter&form_type=customer') > -1) {
+      var newsletterSuccessPopup = (function(){
+        var popup = $('.newsletter-success-modal');
+        var close = popup.find('.close');
+        var success = popup.find('.success');
+        var error = popup.find('.error');
+        var overlay = popup.find('.modal-overlay');
+        popup.show();
+        error.show();
+        success.hide();
+        $.cookie('emailSubcribeModal', 'closed', {
+          expires: 1,
+          path: '/'
+        });
+        close.off('click').on('click',function(){
+          popup.fadeOut();
+        });
+        overlay.off('click').on('click',function(){
+          popup.fadeOut();
+        });
+      })();
+      var newURL = location.href.split("?")[0];
+      window.history.pushState('object', document.title, newURL);
+    }
+  })
+</script>
+{% endif %}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <input class="input-group-field" type="email" name="contact[email]" {% if settings.enable_multilang %}data-translate="general.newsletter_form.newsletter_text" translate-item="placeholder"{%endif%} aria-label="Email Address" placeholder="{% if settings.footer_layout == '06' %}{{ 'general.newsletter_form.newsletter_text_1' | t }}{% else %}{{ 'general.newsletter_form.newsletter_text' | t }}{% endif %}" required="required">
+    <!-- <input class="btn" type="submit" value="{% if settings.footer_layout == '06' %}{{ 'general.newsletter_form.submit_1' | t }}{% else %}{{ 'general.newsletter_form.submit' | t }}{% endif %}"> -->
+    <button class="btn btn-send-mail" type="submit" value="{% if settings.footer_layout == '06' %}{{ 'general.newsletter_form.submit_1' | t }}{% else %}{{ 'general.newsletter_form.submit' | t }}{% endif %}">
+    <svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10.3087 7.19132L5.11387 1.99651C4.94189 1.83042 4.66785 1.83519 4.50176 2.00717C4.33972 2.17493 4.33972 2.44089 4.50176 2.60863L9.39051 7.49738L4.50176 12.3861C4.33275 12.5552 4.33275 12.8292 4.50176 12.9982C4.67082 13.1673 4.94484 13.1673 5.11387 12.9982L10.3087 7.80344C10.4777 7.63438 10.4777 7.36036 10.3087 7.19132Z" fill="#C4C4C4"/>
+      </svg>
+    </button>
+{%- endform -%}
+{% endcapture %}
+
+{{ newsletter_form }}

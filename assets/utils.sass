@@ -1,0 +1,367 @@
+
+$margins: (0, 5, 10, 15, 20, 25, 30, 35, 40, 50, 60, 70, 90, 120)
+$paddings: $margins
+
+.family-base
+    font-family: Work Sans,-apple-system,BlinkMacSystemFont,San Francisco,Segoe UI,Roboto,Helvetica Neue,sans-serif !important
+
+.family-title
+    font-family: Bebas Neue,-apple-system,BlinkMacSystemFont,San Francisco,Segoe UI,Roboto,Helvetica Neue,sans-serif !important
+
+@media screen 
+    
+// Margin onde side by px
+@mixin margin-class($side, $number) 
+    $firstLetter: str-slice($side, 0, 1)
+    .m#{$firstLetter}-#{$number}
+        margin-#{$side}: #{$number}px !important
+
+$sides: ("top", "right", "bottom", "left")
+@mixin generate-margin()
+    @each $margin in $margins
+        @each $side in $sides
+            @include margin-class($side, $margin)
+
+@include generate-margin()
+
+// Margin two side by px
+@mixin margin-class($number) 
+    .mx-#{$number}
+        margin-left: #{$number}px
+        margin-right: #{$number}px
+    .my-#{$number}
+        margin-top: #{$number}px !important
+        margin-bottom: #{$number}px !important
+
+@mixin generate-margin()
+    @each $margin in $margins
+        @include margin-class($margin)
+
+@include generate-margin()
+
+
+// Padding one side by px
+@mixin padding-class($side, $number) 
+    $firstLetter: str-slice($side, 0, 1)
+    .p#{$firstLetter}-#{$number}
+        padding-#{$side}: #{$number}px !important
+
+$sides: ("top", "right", "bottom", "left")
+@mixin generate-padding()
+    @each $padding in $paddings
+        @each $side in $sides
+            @include padding-class($side, $padding)
+
+@include generate-padding()
+
+// Padding two side by px
+@mixin padding-class($number) 
+    .px-#{$number}
+        padding-left: #{$number}px !important
+        padding-right: #{$number}px !important
+    .py-#{$number}
+        padding-top: #{$number}px !important
+        padding-bottom: #{$number}px !important
+
+@mixin generate-padding()
+    @each $padding in $paddings
+        @include padding-class($padding)
+
+
+@include generate-padding()
+
+.stroke-none
+    stroke: none !important
+.grid
+    display: grid !important
+.h-10
+    height: 10px !important
+.w-unset
+    width: unset !important
+.w-10
+    width: 10px !important
+.w-15
+    width: 15px !important
+.w-16
+    width: 16px !important
+.w-fit
+    width: fit-content !important
+.h-40
+    height: 40px !important
+.w-full
+    width: 100% !important
+    max-width: 100% !important
+.pt-0
+    padding-top: 0 !important
+.mt-0
+    margin-top: 0 !important
+.mt-px-50
+    margin-top: 50px
+.mt-px-35
+    margin-top: 35px
+.m-auto
+    margin: auto !important
+.mx-auto
+    margin-left: auto !important
+    margin-right: auto !important
+.my-auto
+    margin-top: auto !important
+    margin-bottom: auto !important
+
+.hover-bg-none
+    &:hover
+        background: none !important
+
+.font-500
+    font-weight: 500 !important
+.font-400
+    font-weight: 400 !important
+.font-600
+    font-weight: 600 !important
+.text-10
+    font-size: 10px !important
+.text-xs
+    font-size: 12px !important
+.text-sm
+    font-size: 14px !important
+.text-sml
+    font-size: 15px !important
+.text-base
+    font-size: 16px !important
+.text-lg
+    font-size: 24px !important
+.text-xl
+    font-size: 26px !important
+.leading-none
+    line-height: 1 !important
+.leading-tight
+    line-height: 1.25 !important
+.leading-normal
+    line-height: 1.4 !important
+.uppercase
+    text-transform: uppercase !important
+.bg-gray-300
+    background: #eee !important
+.bg-gray-500
+    background: #c4c4c4 !important
+.text-gray-400
+    color: #a6a6a6 !important
+.text-gray-500
+    color: #555 !important
+.text-gray-900
+    color: #181818 !important
+.text-center
+    text-align: center
+
+.space-x-1 > * + *
+    --tw-space-x-reverse: 0
+    margin-left: 10px
+.space-x-15 > * + *
+    --tw-space-x-reverse: 0
+    margin-left: 15px
+.space-x-3 > * + *
+    --tw-space-x-reverse: 0
+    margin-left: 30px
+.space-x-8 > * + *
+    --tw-space-x-reverse: 0
+    margin-left: 80px
+.left-0
+    left: 0
+    right: unset !important
+body.theme-rtl
+    .space-x-1 > * + *
+        --tw-space-x-reverse: 0
+        margin-right: 10px
+        margin-left: 0
+    .space-x-15 > * + *
+        --tw-space-x-reverse: 0
+        margin-right: 15px
+        margin-left: 0
+    .space-x-3 > * + *
+        --tw-space-x-reverse: 0
+        margin-right: 30px
+        margin-left: 0
+    .space-x-8 > * + *
+        --tw-space-x-reverse: 0
+        margin-right: 80px
+        margin-left: 0
+    .left-0
+        left: unset
+        right: 0 !important
+
+.items-center
+    align-items: center
+.items-top
+    align-items: flex-start
+.justify-content-between
+    justify-content: space-between
+.justify-content-end
+    justify-content: flex-end
+.justify-content-center,
+.justify-center
+    justify-content: center
+.cursor-pointer
+    cursor: pointer
+.border-none
+    border: none !important
+.border-main
+    border: 1px solid #181818 !important
+.border-b-gray
+    border-bottom: 1px solid #181818 !important
+.border-b-white
+    border-bottom: 1px solid #fff !important
+.hover\:border-main:hover
+    border: 1px solid #181818 !important
+
+.border-gray
+    border: 1px solid #c4c4c4 !important
+.rounded-none
+    border-radius: 0 !important
+.border-y
+    border-top: 1px solid #c4c4c4 !important
+    border-bottom: 1px solid #c4c4c4 !important
+.border-bottom
+    border-bottom: 1px solid #c4c4c4 !important
+.border-top
+    border-top: 1px solid #c4c4c4 !important
+.focus\:border-main
+    &:focus,&:hover
+        border: 1px solid #181818 !important
+.hover\:bg-gray-900:hover
+    background: #181818 !important
+.text-white,
+.hover\:text-white:hover
+    color: #fff !important
+.text-black,
+.hover\:text-black:hover
+    color: #000 !important
+
+.transition
+    transition: all .3s ease
+.d-block
+    display: block !important
+.bg-white-05
+    background: #ffffff8a !important
+
+.shadow-sm
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05)
+
+
+.letter-space-03
+    letter-spacing: 0.03em
+.letter-space-02
+    letter-spacing: 0.02em
+
+
+// Responsive
+@media screen and ( max-width: 992px )
+    // Margin onde side by px
+
+    @mixin margin-class($side, $number) 
+        $firstLetter: str-slice($side, 0, 1)
+        .mb\:m#{$firstLetter}-#{$number}
+            margin-#{$side}: #{$number}px !important
+
+    $sides: ("top", "right", "bottom", "left")
+    @mixin generate-margin()
+        @each $margin in $margins
+            @each $side in $sides
+                @include margin-class($side, $margin)
+
+    @include generate-margin()
+
+    // Margin two side by px
+    @mixin margin-class($number) 
+        .mb\:mx-#{$number}
+            margin-left: #{$number}px
+            margin-right: #{$number}px
+        .mb\:my-#{$number}
+            margin-top: #{$number}px !important
+            margin-bottom: #{$number}px !important
+
+    @mixin generate-margin()
+        @each $margin in $margins
+            @include margin-class($margin)
+
+    @include generate-margin()
+
+
+    // Padding one side by px
+    @mixin padding-class($side, $number) 
+        $firstLetter: str-slice($side, 0, 1)
+        .mb\:p#{$firstLetter}-#{$number}
+            padding-#{$side}: #{$number}px !important
+    $sides: ("top", "right", "bottom", "left")
+    @mixin generate-padding()
+        @each $padding in $paddings
+            @each $side in $sides
+                @include padding-class($side, $padding)
+    @include generate-padding()
+
+    // Padding two side by px
+    @mixin padding-class($number) 
+        .mb\:px-#{$number}
+            padding-left: #{$number}px !important
+            padding-right: #{$number}px !important
+        .mb\:py-#{$number}
+            padding-top: #{$number}px !important
+            padding-bottom: #{$number}px !important
+    @mixin generate-padding()
+        @each $padding in $paddings
+            @include padding-class($padding)
+
+    @include generate-padding()
+
+    .h-mobile
+        display: none !important
+    .mb\:mx-auto
+        margin-left: auto !important
+        margin-right: auto !important
+    .mb\:my-auto
+        margin-top: auto !important
+        margin-bottom: auto !important
+    .mb\:border-none
+        border: none !important
+    .text-10
+        font-size: 10px !important
+    .text-xs
+        font-size: 12px !important
+    .text-sm
+        font-size: 12px !important
+    .text-base
+        font-size: 14px !important
+    .mb\:text-10
+        font-size: 10px !important
+    .mb\:text-13
+        font-size: 13px !important
+    .mb\:text-xs
+        font-size: 12px !important
+    .mb\:text-sm
+        font-size: 14px !important
+    .mb\:text-base
+        font-size: 16px !important
+    .mb\:text-xl
+        font-size: 26px !important
+    .mb\:text-center
+        text-align: center !important
+    .mb\:leading-none
+        line-height: 1
+    .mb\:leading-tight
+        line-height: 1.25
+    .mb\:leading-normal
+        line-height: 1.4
+    .mb\:h-12
+        height: 12px !important
+    .mb\:overflow-x
+        overflow-x: scroll
+    .mb\:w-scroll
+        width: calc(100% + 35vw) !important
+
+
+// Home page start here
+// ----------------------
+.banner-title
+    font-family: Bebas Neue,-apple-system,BlinkMacSystemFont,San Francisco,Segoe UI,Roboto,Helvetica Neue,sans-serif
+    font-weight: 400 !important
+    font-size: 40px
+    letter-spacing: 0.02em !important
